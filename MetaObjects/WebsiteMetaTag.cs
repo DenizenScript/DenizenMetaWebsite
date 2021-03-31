@@ -17,7 +17,7 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent += TableLine("active", "Returns", Object.Returns, true);
             if (!string.IsNullOrWhiteSpace(Object.Mechanism))
             {
-                HtmlContent += TableLine("active", "Related Mechanism", $"<a href=\"/Docs/Mechanisms/{URLSafe(Object.Mechanism)}\">{Util.EscapeForHTML(Object.Mechanism)}</a>", false);
+                HtmlContent += TableLine("active", "Mechanism", $"<a href=\"/Docs/Mechanisms/{URLSafe(Object.Mechanism)}\">{Util.EscapeForHTML(Object.Mechanism)}</a>", false);
             }
             HtmlContent += TableLine("active", "Description", Object.Description, true);
             AddHtmlEndParts();
