@@ -24,3 +24,7 @@ hr {
 .script_colon{color:#0000FF;font-weight:bold;}
 .script_bad_space{color:#000000;background-color:#FF6666;}
 .script_normal{color:#000000;}
+/* Fix For Light Theme */
+.doc_name {
+    color: #005500;
+}
