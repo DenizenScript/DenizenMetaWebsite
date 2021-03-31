@@ -1,3 +1,4 @@
+@model DocViewModel
 @{
     ViewData["Title"] = "Home";
     ViewData["Description"] = "NPC Action Search";
@@ -10,4 +11,14 @@
         <br>NPC Actions go in 'assignment' scripts, and work like 'events' but linked to the assigned NPC.
         <br>Learn about how NPC Actions work in <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
     </div>
+    @if (Model.IsAll)
+    {
+        <h5>Showing all commands...</h5>
+    }
+    else
+    {
+        <h5>Showing @Model.CurrentlyShown out of @Model.Max commands...</h5>
+    }
 </span>
+
+@Model.Content

@@ -1,3 +1,4 @@
+@model DocViewModel
 @{
     ViewData["Title"] = "Home";
     ViewData["Description"] = "Mechanism Search";
@@ -10,4 +11,14 @@
         <br>Mechanisms are found in object properties, the 'adjust' command, and similar. These are used to change the state of an object.
         <br>Learn about how mechanisms work in <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
     </div>
+    @if (Model.IsAll)
+    {
+        <h5>Showing all commands...</h5>
+    }
+    else
+    {
+        <h5>Showing @Model.CurrentlyShown out of @Model.Max commands...</h5>
+    }
 </span>
+
+@Model.Content
