@@ -39,7 +39,7 @@ html {
 }
 .flasher_tool {
     position: absolute;
-    width: 30rem;
+    width: 90%;
     left: 0;
     height: 1.3rem;
 }
@@ -64,4 +64,7 @@ table {
 .doc_name {
     font-weight: bold;
     font-size: 150%;
+}
+.jumbotron {
+    padding: 2rem;
 }

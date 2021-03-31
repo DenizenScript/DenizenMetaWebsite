@@ -1,5 +1,6 @@
 ﻿using DenizenMetaWebsite.Highlighters;
 using FreneticUtilities.FreneticExtensions;
+using SharpDenizenTools.MetaHandlers;
 using SharpDenizenTools.MetaObjects;
 using System;
 using System.Collections.Generic;
@@ -58,29 +59,24 @@ namespace DenizenMetaWebsite.MetaObjects
             return $"<code>{output}</code>";
         }
 
-        public override void LoadHTML()
+        public static string HtmlizeTags(string[] tags, MetaDocs meta)
         {
-            HtmlContent = HTML_PREFIX;
-            string aID = Util.EscapeForHTML(Object.CleanName);
-            HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span></a>", false);
-            HtmlContent += TableLine("active", "Syntax", HtmlizeSyntax(Object.Syntax), false);
-            HtmlContent += TableLine("active", "Short Description", Object.Short, true);
-            HtmlContent += TableLine("active", "Full Description", Object.Description, true);
             StringBuilder tagOutput = new StringBuilder();
-            foreach (string tag in Object.Tags)
+            foreach (string tag in tags)
             {
                 string[] parts = tag.Split(' ', 2);
                 string properName = $"<code>{ScriptHighlighter.ColorArgument(Util.EscapeForHTML(parts[0]), false)}</code>";
                 if (parts.Length == 2)
                 {
-                    tagOutput.Append(properName).Append(Util.EscapeForHTML(parts[1]));
+                    tagOutput.Append(properName).Append(' ').Append(Util.EscapeForHTML(parts[1]));
                 }
                 else
                 {
-                    MetaTag actualTag = Object.Meta.FindTag(parts[0]);
+                    MetaTag actualTag = meta.FindTag(parts[0]);
                     if (actualTag == null)
                     {
-                        tagOutput.Append(Util.EscapeForHTML(parts[0])).Append(" ERROR: TAG INVALID");
+                        string nameLow = parts[0].ToLowerFast();
+                        tagOutput.Append(Util.EscapeForHTML(parts[0])).Append((nameLow == "none" || nameLow == "todo") ? "" : " ERROR: TAG INVALID");
                     }
                     else
                     {
@@ -94,7 +90,18 @@ namespace DenizenMetaWebsite.MetaObjects
                 }
                 tagOutput.Append("\n<br>");
             }
-            HtmlContent += TableLine("active", "Related Tags", tagOutput.ToString(), false);
+            return tagOutput.ToString();
+        }
+
+        public override void LoadHTML()
+        {
+            HtmlContent = HTML_PREFIX;
+            string aID = Util.EscapeForHTML(Object.CleanName);
+            HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span></a>", false);
+            HtmlContent += TableLine("active", "Syntax", HtmlizeSyntax(Object.Syntax), false);
+            HtmlContent += TableLine("active", "Short Description", Object.Short, true);
+            HtmlContent += TableLine("active", "Full Description", Object.Description, true);
+            HtmlContent += TableLine("active", "Related Tags", HtmlizeTags(Object.Tags, Object.Meta), false);
             foreach (string usage in Object.Usages)
             {
                 HtmlContent += TableLine("active", "Usage Example", ScriptHighlighter.Highlight("#" + usage), false);

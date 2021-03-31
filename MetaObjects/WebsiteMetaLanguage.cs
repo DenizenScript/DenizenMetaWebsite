@@ -10,12 +10,16 @@ namespace DenizenMetaWebsite.MetaObjects
     {
         public override void LoadHTML()
         {
-            HtmlContent = Util.EscapeForHTML(Object.Name);
+            HtmlContent = HTML_PREFIX;
+            string aID = Util.EscapeForHTML(Object.CleanName);
+            HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span></a>", false);
+            HtmlContent += TableLine("active", "Description", Object.Description, true);
+            AddHtmlEndParts();
         }
 
         public override bool MatchesSearch(string search)
         {
-            throw new NotImplementedException();
+            return Object.CleanName.Contains(search);
         }
 
         public override string GroupingString => Object.Group;

@@ -28,16 +28,16 @@ namespace DenizenMetaWebsite.Controllers
             if (categories.Count > 1)
             {
                 outText.Append("<center><h4>Categories:</h4>");
-                foreach (string category in categories)
+                outText.Append(string.Join(" | ", categories.Select(category =>
                 {
                     string linkable = HttpUtility.UrlEncode(category.ToLowerFast());
-                    outText.Append($"<a href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a>\n<br>");
-                }
+                    return $"<a href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a>";
+                })));
                 outText.Append("</center>");
                 foreach (string category in categories)
                 {
                     string linkable = HttpUtility.UrlEncode(category.ToLowerFast());
-                    outText.Append($"<center><h4>Category: <a id=\"{linkable}\" href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a></h4></center>");
+                    outText.Append($"<br><hr><br><center><h4>Category: <a id=\"{linkable}\" href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a></h4></center><br>");
                     outText.Append(string.Join("\n<br>", toDisplay.Where(o => o.GroupingString == category).Select(o => o.HtmlContent)));
                 }
             }
@@ -60,35 +60,35 @@ namespace DenizenMetaWebsite.Controllers
             ThemeHelper.HandleTheme(Request, ViewData);
             return View();
         }
-        
-        public IActionResult Commands(string search)
+
+        public IActionResult Commands([Bind] string id)
         {
-            return HandleMeta(this, search, MetaSiteCore.Commands);
+            return HandleMeta(this, id, MetaSiteCore.Commands);
         }
         
-        public IActionResult Tags(string search)
+        public IActionResult Tags([Bind] string id)
         {
-            return HandleMeta(this, search, MetaSiteCore.Tags);
+            return HandleMeta(this, id, MetaSiteCore.Tags);
         }
         
-        public IActionResult Events(string search)
+        public IActionResult Events([Bind] string id)
         {
-            return HandleMeta(this, search, MetaSiteCore.Events);
+            return HandleMeta(this, id, MetaSiteCore.Events);
         }
         
-        public IActionResult Mechanisms(string search)
+        public IActionResult Mechanisms([Bind] string id)
         {
-            return HandleMeta(this, search, MetaSiteCore.Mechanisms);
+            return HandleMeta(this, id, MetaSiteCore.Mechanisms);
         }
         
-        public IActionResult Actions(string search)
+        public IActionResult Actions([Bind] string id)
         {
-            return HandleMeta(this, search, MetaSiteCore.Actions);
+            return HandleMeta(this, id, MetaSiteCore.Actions);
         }
         
-        public IActionResult Languages(string search)
+        public IActionResult Languages([Bind] string id)
         {
-            return HandleMeta(this, search, MetaSiteCore.Languages);
+            return HandleMeta(this, id, MetaSiteCore.Languages);
         }
     }
 }
