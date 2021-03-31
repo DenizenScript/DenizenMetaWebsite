@@ -1,0 +1,6 @@
+[submodule "FreneticUtilities"]
+	path = FreneticUtilities
+	url = https://github.com/FreneticLLC/FreneticUtilities
+[submodule "SharpDenizenTools"]
+	path = SharpDenizenTools
+	url = https://github.com/DenizenScript/SharpDenizenTools/
