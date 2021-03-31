@@ -68,7 +68,7 @@ namespace DenizenMetaWebsite.MetaObjects
                 string properName = $"<code>{ScriptHighlighter.ColorArgument(Util.EscapeForHTML(parts[0]), false)}</code>";
                 if (parts.Length == 2)
                 {
-                    tagOutput.Append(properName).Append(' ').Append(Util.EscapeForHTML(parts[1]));
+                    tagOutput.Append(properName).Append(' ').Append(ParseAndEscape(parts[1]));
                 }
                 else
                 {
