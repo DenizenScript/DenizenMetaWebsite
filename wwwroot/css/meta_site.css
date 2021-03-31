@@ -68,3 +68,6 @@ table {
 .jumbotron {
     padding: 2rem;
 }
+pre {
+    font-size: 95%;
+}

@@ -1,7 +1,10 @@
-﻿using SharpDenizenTools.MetaObjects;
+﻿using DenizenMetaWebsite.Highlighters;
+using FreneticUtilities.FreneticExtensions;
+using SharpDenizenTools.MetaObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DenizenMetaWebsite.MetaObjects
@@ -24,10 +27,113 @@ namespace DenizenMetaWebsite.MetaObjects
 
         public const string HTML_SUFFIX = "</tbody></table>\n";
 
+        public static string EscapeQuickSimple(string content)
+        {
+            return Util.EscapeForHTML(content).Replace("\n", "\n<br>");
+        }
+
+        public static string URLSafe(string input)
+        {
+            return input.Replace("<", "%3C").Replace(">", "%3E").Replace("\"", "%22");
+        }
+
+        public static string ParseLinksHelper(string content)
+        {
+            int linkStart = content.IndexOf("<@link");
+            if (linkStart == -1)
+            {
+                return EscapeQuickSimple(content);
+            }
+            int tagMarks = 0;
+            int linkEnd = -1;
+            for (int i = linkStart + 1; i < content.Length; i++)
+            {
+                if (content[i] == '<')
+                {
+                    tagMarks++;
+                }
+                else if (content[i] == '>')
+                {
+                    if (tagMarks == 0)
+                    {
+                        linkEnd = i;
+                        break;
+                    }
+                    tagMarks--;
+                }
+            }
+            if (linkEnd == -1)
+            {
+                Console.Error.WriteLine("Invalid link text found in " + content);
+                return EscapeQuickSimple(content);
+            }
+            string[] linkContent = content[(linkStart + "<@link ".Length)..linkEnd].Split(' ', 2);
+            string escapedName = Util.EscapeForHTML(linkContent[1]);
+            string targetName = URLSafe(linkContent[1]);
+            string fixedLink;
+            switch (linkContent[0].ToLowerFast())
+            {
+                case "url":
+                    if (targetName.StartsWith("https://"))
+                    {
+                        fixedLink = $"URL:<a href=\"{targetName}\">{escapedName}</a>";
+                    }
+                    else
+                    {
+                        Console.Error.WriteLine("Dangerous URL '" + targetName + "' found in " + content);
+                        fixedLink = "Link Blocked";
+                    }
+                    break;
+                case "command":
+                    fixedLink = $"Command:<a href=\"/Docs/Commands/{targetName}\">{escapedName}</a>";
+                    break;
+                case "tag":
+                    fixedLink = $"Tag:<a href=\"/Docs/Tags/{targetName}\">{escapedName}</a>";
+                    break;
+                case "event":
+                    fixedLink = $"Event:<a href=\"/Events/Commands/{targetName}\">{escapedName}</a>";
+                    break;
+                case "mechanism":
+                    fixedLink = $"Mechanism:<a href=\"/Docs/Mechanisms/{targetName}\">{escapedName}</a>";
+                    break;
+                case "action":
+                    fixedLink = $"Action:<a href=\"/Docs/Actions/{targetName}\">{escapedName}</a>";
+                    break;
+                case "language":
+                    fixedLink = $"Language:<a href=\"/Docs/Languages/{targetName}\">{escapedName}</a>";
+                    break;
+                default:
+                    Console.Error.WriteLine("Invalid link type '" + linkContent[0] + "' found in " + content);
+                    fixedLink = "Error Invalid Link";
+                    break;
+            }
+            return EscapeQuickSimple(content[..linkStart]) + fixedLink + ParseLinksHelper(content[(linkEnd + 1)..]);
+        }
+
         public static string ParseAndEscape(string content)
         {
-#warning TODO Write the actual parser bit
-            return Util.EscapeForHTML(content).Replace("\n", "\n<br>");
+            if (!content.Contains("<code>"))
+            {
+                return ParseLinksHelper(content);
+            }
+            int lastEnd = 0;
+            StringBuilder parsed = new StringBuilder(content.Length * 2);
+            int codeBlockStart = content.IndexOf("<code>");
+            while (codeBlockStart != -1)
+            {
+                int codeBlockEnd = content.IndexOf("</code>", codeBlockStart);
+                if (codeBlockEnd == -1)
+                {
+                    Console.Error.WriteLine("Invalid code block found in " + content);
+                    break;
+                }
+                parsed.Append(ParseLinksHelper(content[lastEnd..codeBlockStart])).Append("\n<br>");
+                string codeRaw = content[(codeBlockStart + "<code>".Length)..codeBlockEnd];
+                parsed.Append(ScriptHighlighter.Highlight(codeRaw));
+                lastEnd = codeBlockEnd + "</code>".Length;
+                codeBlockStart = content.IndexOf("<code>", lastEnd);
+            }
+            return parsed.ToString();
         }
 
         public static string TableLine(string type, string key, string content, bool cleanContent)
@@ -50,11 +156,6 @@ namespace DenizenMetaWebsite.MetaObjects
     {
         /// <summary>The original object.</summary>
         public T Object;
-
-        public static string URLSafe(string input)
-        {
-            return input.Replace("<", "%3C").Replace(">", "%3E").Replace("\"", "%22");
-        }
 
         public void AddHtmlEndParts()
         {
