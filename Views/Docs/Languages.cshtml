@@ -12,11 +12,11 @@
     </div>
     @if (Model.IsAll)
     {
-        <h5>Showing all commands...</h5>
+        <h5>Showing all @Model.Max language explanations...</h5>
     }
     else
     {
-        <h5>Showing @Model.CurrentlyShown out of @Model.Max commands...</h5>
+        <h5>Showing @Model.CurrentlyShown out of @Model.Max language explanations...</h5>
     }
 </span>
 
