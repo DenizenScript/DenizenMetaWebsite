@@ -11,6 +11,20 @@
         <br>Events are a way to listen to things that happened on your server and respond to them through a script. These usually pair with 'world' script containers.
         <br>Learn about how events work in <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
     </div>
+
+    <input type="text" id="search_bar" placeholder="Search Events...">
+    <script>
+        document.getElementById('search_bar').addEventListener('keydown', function(e) {
+            if (!e)  {
+                var e = window.event;
+            }
+            if (e.keyCode == 13) {
+                document.location.href = '/Docs/Events/' + document.getElementById('search_bar').value;
+            }
+        }, false);
+    </script>
+    <br><br>
+
     @if (Model.IsAll)
     {
         <h5>Showing all @Model.Max events...</h5>

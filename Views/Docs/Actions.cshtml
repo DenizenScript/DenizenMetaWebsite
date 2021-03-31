@@ -11,6 +11,20 @@
         <br>NPC Actions go in 'assignment' scripts, and work like 'events' but linked to the assigned NPC.
         <br>Learn about how NPC Actions work in <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
     </div>
+
+    <input type="text" id="search_bar" placeholder="Search Actions...">
+    <script>
+        document.getElementById('search_bar').addEventListener('keydown', function(e) {
+            if (!e)  {
+                var e = window.event;
+            }
+            if (e.keyCode == 13) {
+                document.location.href = '/Docs/Actions/' + document.getElementById('search_bar').value;
+            }
+        }, false);
+    </script>
+    <br><br>
+
     @if (Model.IsAll)
     {
         <h5>Showing all @Model.Max NPC Actions...</h5>

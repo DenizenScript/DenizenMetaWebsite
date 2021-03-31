@@ -11,6 +11,20 @@
         <br>Mechanisms are found in object properties, the 'adjust' command, and similar. These are used to change the state of an object.
         <br>Learn about how mechanisms work in <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
     </div>
+    
+    <input type="text" id="search_bar" placeholder="Search Mechanisms...">
+    <script>
+        document.getElementById('search_bar').addEventListener('keydown', function(e) {
+            if (!e)  {
+                var e = window.event;
+            }
+            if (e.keyCode == 13) {
+                document.location.href = '/Docs/Mechanisms/' + document.getElementById('search_bar').value;
+            }
+        }, false);
+    </script>
+    <br><br>
+
     @if (Model.IsAll)
     {
         <h5>Showing all @Model.Max mechanisms...</h5>
