@@ -3,6 +3,30 @@ DenizenMetaWebsite
 
 Meta-documentation website for Denizen.
 
+### How To Install/Run
+
+Designed for and tested on Debian Linux.
+
+- Make sure you have `screen` and `dotnet-5-sdk` available
+- Add a user for the service (via `adduser` generally, then `su` to that user)
+- Clone the git repo (`git clone https://github.com/DenizenScript/DenizenMetaWebsite`) and enter the folder
+- Make a folder labeled `config`, inside it make a text file labeled `config.fds`, and add any configuration keys from the sample config below. All keys are optional, a default config would be an empty file.
+- Call `./update.sh`
+- Will by default open on port 8098. To change this, edit `start.sh`
+- It is strongly recommended you run this webserver behind a reverse proxy like Apache2.
+
+### Configuration
+
+```yml
+# Set to a webhook token that will cause the website to reload meta documentation from source.
+# This can be used by sending a POST request to "<base url>/Webhook/Reload?token=some_token_here"
+# Exclude this config key to not have any reloading.
+reload-webhook-token: some_token_here
+# Set to a list of alternate meta doc source URLs. Exclude this key to use the default source list.
+alt-sources:
+- https://example.com
+```
+
 ### Licensing pre-note:
 
 This is an open source project, provided entirely freely, for everyone to use and contribute to.

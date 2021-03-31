@@ -40,6 +40,7 @@ namespace DenizenMetaWebsite
             {
                 app.UseExceptionHandler("/Error/Any");
             }
+            MetaSiteCore.Init();
             app.Use(async (context, next) =>
             {
                 await next();
