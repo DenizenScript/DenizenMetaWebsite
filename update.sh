@@ -4,4 +4,4 @@ git pull
 git submodule update --init --recursive
 
 dotnet restore
-screen -dmS pastesite bash ./start.sh
+screen -dmS metasite bash ./start.sh
