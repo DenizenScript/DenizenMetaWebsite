@@ -1,3 +1,4 @@
 #!/bin/bash
 dotnet restore
-ASPNETCORE_ENVIRONMENT=Production ASPNETCORE_URLS=http://*:8098 dotnet run
+dotnet build
+ASPNETCORE_ENVIRONMENT=Production ASPNETCORE_URLS=http://*:8098 dotnet bin/Debug/net5.0/DenizenMetaWebsite.dll
