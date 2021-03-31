@@ -79,3 +79,9 @@ table {
 pre {
     font-size: 95%;
 }
+.table td {
+    padding: 0.4rem;
+}
+pre {
+    margin-bottom: 0.2rem;
+}
