@@ -25,19 +25,19 @@ namespace DenizenMetaWebsite.Controllers
             List<T> toDisplay = search == null ? objects : objects.Where(o => o.MatchesSearch(search)).ToList();
             List<string> categories = toDisplay.Select(o => o.GroupingString).Distinct().ToList();
             StringBuilder outText = new StringBuilder();
+            outText.Append("<center>");
             if (categories.Count > 1)
             {
-                outText.Append("<center><h4>Categories:</h4>");
+                outText.Append("<h4>Categories:</h4>");
                 outText.Append(string.Join(" | ", categories.Select(category =>
                 {
                     string linkable = HttpUtility.UrlEncode(category.ToLowerFast());
                     return $"<a href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a>";
                 })));
-                outText.Append("</center>");
                 foreach (string category in categories)
                 {
                     string linkable = HttpUtility.UrlEncode(category.ToLowerFast());
-                    outText.Append($"<br><hr><br><center><h4>Category: <a id=\"{linkable}\" href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a></h4></center><br>");
+                    outText.Append($"<br><hr><br><h4>Category: <a id=\"{linkable}\" href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a></h4><br>");
                     outText.Append(string.Join("\n<br>", toDisplay.Where(o => o.GroupingString == category).Select(o => o.HtmlContent)));
                 }
             }
@@ -45,6 +45,7 @@ namespace DenizenMetaWebsite.Controllers
             {
                 outText.Append(string.Join("\n<br>", toDisplay.Select(o => o.HtmlContent)));
             }
+            outText.Append("</center>");
             DocViewModel model = new DocViewModel()
             {
                 IsAll = search == null,

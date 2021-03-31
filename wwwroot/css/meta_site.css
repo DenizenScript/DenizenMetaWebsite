@@ -61,6 +61,11 @@ table {
     max-width: 95%;
     border: 2px #606060 solid;
 }
+@media (min-width: 1500px) {
+    table {
+        max-width: 1500px;
+    }
+}
 .td-doc-key {
     width: 150px;
 }
