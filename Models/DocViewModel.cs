@@ -15,5 +15,7 @@ namespace DenizenMetaWebsite.Models
         public int Max;
 
         public HtmlString Content;
+
+        public string SearchText;
     }
 }

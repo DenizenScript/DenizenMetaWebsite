@@ -51,7 +51,8 @@ namespace DenizenMetaWebsite.Controllers
                 IsAll = search == null,
                 CurrentlyShown = toDisplay.Count,
                 Max = objects.Count,
-                Content = new HtmlString(outText.ToString())
+                Content = new HtmlString(outText.ToString()),
+                SearchText = search
             };
             return controller.View(model);
         }

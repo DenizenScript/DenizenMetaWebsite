@@ -1,7 +1,7 @@
 @model DocViewModel
 @{
-    ViewData["Title"] = "Home";
-    ViewData["Description"] = "Mechanism Search";
+    ViewData["Title"] = (Model.IsAll ? "" : "Search '" + Model.SearchText + "'' | ") + "Mechanisms";
+    ViewData["Description"] = Model.IsAll ? "Mechanism List" : "Mechanism search for '" + Model.SearchText + "'";
     ViewData["MetaColor"] = "#FFFFFF";
 }
 
