@@ -1,6 +1,6 @@
 @model DocViewModel
 @{
-    ViewData["Title"] = (Model.IsAll ? "" : "Search '" + Model.SearchText + "'' | ") + "Commands";
+    ViewData["Title"] = (Model.IsAll ? "" : "Search '" + Model.SearchText + "' | ") + "Commands";
     ViewData["Description"] = Model.IsAll ? "Command List" : "Command search for '" + Model.SearchText + "'";
     ViewData["MetaColor"] = "#FFFFFF";
 }
