@@ -14,7 +14,9 @@ namespace DenizenMetaWebsite.MetaObjects
     {
         public static string HtmlizeSyntax(string syntax)
         {
+            string cmd = syntax.BeforeAndAfter(' ', out syntax);
             StringBuilder output = new StringBuilder(syntax.Length * 2);
+            output.Append($"<span class=\"syntax_command\">{Util.EscapeForHTML(cmd)}</span> ");
             int spans = 0;
             foreach (char c in syntax)
             {
@@ -22,14 +24,22 @@ namespace DenizenMetaWebsite.MetaObjects
                 {
                     case '<':
                         spans++;
-                        output.Append("<span class=\"script_tag\">&lt;");
+                        output.Append("<span class=\"syntax_fillable\">&lt;");
                         break;
                     case '>':
                         spans--;
                         output.Append("&gt;</span>");
                         break;
+                    case '{':
+                        spans++;
+                        output.Append("<span class=\"syntax_default\">{");
+                        break;
+                    case '}':
+                        spans--;
+                        output.Append("}</span>");
+                        break;
                     case '[':
-                        output.Append("<span class=\"script_tag_param\">[");
+                        output.Append("<span class=\"syntax_required\">[");
                         spans++;
                         break;
                     case ']':
@@ -37,7 +47,7 @@ namespace DenizenMetaWebsite.MetaObjects
                         output.Append("]</span>");
                         break;
                     case '(':
-                        output.Append("<span class=\"script_command\">(");
+                        output.Append("<span class=\"syntax_optional\">(");
                         spans++;
                         break;
                     case ')':
@@ -46,6 +56,14 @@ namespace DenizenMetaWebsite.MetaObjects
                         break;
                     case '&':
                         output.Append("&amp;");
+                        break;
+                    case ':':
+                        output.Append("<span class=\"syntax_colon\">:</span>");
+                        break;
+                    case '.':
+                    case '|':
+                    case '/':
+                        output.Append($"<span class=\"syntax_list\">{c}</span>");
                         break;
                     default:
                         output.Append(c);

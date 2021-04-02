@@ -21,3 +21,11 @@ hr {
 .script_colon{color:#66CCFF;font-weight:bold;}
 .script_bad_space{color:#FFFFFF;background-color:#440000;}
 .script_normal{color:#FFFFFF;}
+/* Denizen Command Syntax Colors */
+.syntax_command{color:#DD99FF;}
+.syntax_required{color:#7777FF;font-weight:bold;}
+.syntax_optional{color:#77BBF5;}
+.syntax_default{color:#55DDBB;font-style:italic;}
+.syntax_fillable{color:#AAAAAA;}
+.syntax_list{color:#EEEEFF;}
+.syntax_colon{color:#66CCFF;font-weight:bold;}
