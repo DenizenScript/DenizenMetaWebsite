@@ -91,7 +91,7 @@ namespace DenizenMetaWebsite.MetaObjects
                     fixedLink = $"Tag:<a href=\"/Docs/Tags/{targetName}\">{escapedName}</a>";
                     break;
                 case "event":
-                    fixedLink = $"Event:<a href=\"/Events/Commands/{targetName}\">{escapedName}</a>";
+                    fixedLink = $"Event:<a href=\"/Docs/Events/{targetName}\">{escapedName}</a>";
                     break;
                 case "mechanism":
                     fixedLink = $"Mechanism:<a href=\"/Docs/Mechanisms/{targetName}\">{escapedName}</a>";
