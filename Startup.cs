@@ -46,8 +46,8 @@ namespace DenizenMetaWebsite
                 string path = context.Request.Path.Value;
                 if (path.CountCharacter('/') > 3)
                 {
-                    int thirdSlash = path.IndexOf('/', path.IndexOf('/', path.IndexOf('/') + 1) + 1);
-                    context.Request.Path = path[..thirdSlash] + path[(thirdSlash + 1)..].Replace("/", "%2f");
+                    int thirdSlash = path.IndexOf('/', path.IndexOf('/', path.IndexOf('/') + 1) + 1) + 1;
+                    context.Request.Path = path[..thirdSlash] + path[thirdSlash..].Replace("/", "%252f");
                 }
                 await next();
             });
