@@ -43,6 +43,16 @@ namespace DenizenMetaWebsite
             MetaSiteCore.Init();
             app.Use(async (context, next) =>
             {
+                string path = context.Request.Path.Value;
+                if (path.CountCharacter('/') > 3)
+                {
+                    int thirdSlash = path.IndexOf('/', path.IndexOf('/', path.IndexOf('/') + 1) + 1);
+                    context.Request.Path = path[..thirdSlash] + path[(thirdSlash + 1)..].Replace("/", "%2f");
+                }
+                await next();
+            });
+            app.Use(async (context, next) =>
+            {
                 await next();
                 if (context.Response.StatusCode == 404)
                 {

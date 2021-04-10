@@ -21,7 +21,7 @@ namespace DenizenMetaWebsite.Controllers
         public static IActionResult HandleMeta<T>(DocsController controller, string search, List<T> objects) where T : WebsiteMetaObject
         {
             ThemeHelper.HandleTheme(controller.Request, controller.ViewData);
-            search = search?.ToLowerFast();
+            search = search?.ToLowerFast().Replace("%2f", "/");
             List<T> toDisplay = search == null ? objects : objects.Where(o => o.MatchesSearch(search)).ToList();
             List<string> categories = toDisplay.Select(o => o.GroupingString).Distinct().ToList();
             StringBuilder outText = new StringBuilder();

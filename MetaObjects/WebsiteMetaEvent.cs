@@ -37,11 +37,14 @@ namespace DenizenMetaWebsite.MetaObjects
                 HtmlContent += TableLine("active", "Has Location", "True - This adds the switches 'in:<area>', 'location_flagged:<flag>', ...", true);
             }
             AddHtmlEndParts();
+            Searchable = string.Join("\n", Object.CleanEvents);
         }
+
+        public string Searchable;
 
         public override bool MatchesSearch(string search)
         {
-            return Object.CleanEvents.Any(a => a.Contains(search));
+            return Searchable.Contains(search);
         }
 
         public override string GroupingString => Object.Group ?? "Error: Missing Group";
