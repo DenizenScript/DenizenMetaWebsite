@@ -37,7 +37,7 @@ namespace DenizenMetaWebsite
             ReloadWebhookToken = Config.GetString("reload-webhook-token");
             if (Config.HasKey("alt-sources"))
             {
-                MetaDocs.SourcesToUse = Config.GetStringList("alt-sources").ToArray();
+                MetaDocsLoader.SourcesToUse = Config.GetStringList("alt-sources").ToArray();
             }
             ReloadMeta();
         }
@@ -61,8 +61,7 @@ namespace DenizenMetaWebsite
             lock (ReloadLock)
             {
                 Console.WriteLine("Reloading meta...");
-                MetaDocs docs = new MetaDocs();
-                docs.DownloadAll();
+                MetaDocs docs = MetaDocsLoader.DownloadAll();
                 Console.WriteLine("Meta loaded, HTMLizing...");
                 List<WebsiteMetaCommand> _commands = new List<WebsiteMetaCommand>();
                 List<WebsiteMetaTag> _tags = new List<WebsiteMetaTag>();
