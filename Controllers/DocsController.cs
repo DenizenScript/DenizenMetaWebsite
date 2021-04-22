@@ -96,5 +96,70 @@ namespace DenizenMetaWebsite.Controllers
         {
             return HandleMeta(this, id, MetaSiteCore.Languages);
         }
+
+        public IActionResult Search([Bind] string id)
+        {
+            ThemeHelper.HandleTheme(Request, ViewData);
+            string search = id?.ToLowerFast().Replace("%2f", "/");
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                search = "Nothing";
+            }
+            List<WebsiteMetaObject> best = new List<WebsiteMetaObject>();
+            List<WebsiteMetaObject> additional = new List<WebsiteMetaObject>();
+            foreach (WebsiteMetaObject obj in MetaSiteCore.AllObjects)
+            {
+                if (obj.MatchesSearch(search))
+                {
+                    best.Add(obj);
+                }
+                else if (obj.AllSearchableText.Contains(search))
+                {
+                    additional.Add(obj);
+                }
+            }
+            best = best.OrderBy(obj => obj.ObjectGeneric.Type.Name).ToList();
+            additional = additional.OrderBy(obj => obj.ObjectGeneric.Type.Name).ToList();
+            StringBuilder outText = new StringBuilder();
+            outText.Append("<center>");
+            if (best.Count > 0)
+            {
+                string lastType = "";
+                outText.Append("<h4>Best Results</h4>");
+                foreach (WebsiteMetaObject obj in best)
+                {
+                    if (obj.ObjectGeneric.Type.Name != lastType)
+                    {
+                        lastType = obj.ObjectGeneric.Type.Name;
+                        outText.Append($"<br><h4>{lastType}</h4><br>");
+                    }
+                    outText.Append(obj.HtmlContent);
+                }
+            }
+            if (additional.Count > 0)
+            {
+                string lastType = "";
+                outText.Append("<h4>Imperfect Results</h4>");
+                foreach (WebsiteMetaObject obj in additional)
+                {
+                    if (obj.ObjectGeneric.Type.Name != lastType)
+                    {
+                        lastType = obj.ObjectGeneric.Type.Name;
+                        outText.Append($"<br><h4>{lastType}</h4><br>");
+                    }
+                    outText.Append(obj.HtmlContent);
+                }
+            }
+            outText.Append("</center>");
+            DocViewModel model = new DocViewModel()
+            {
+                IsAll = search == null,
+                CurrentlyShown = best.Count + additional.Count,
+                Max = MetaSiteCore.AllObjects.Count,
+                Content = new HtmlString(outText.ToString()),
+                SearchText = search
+            };
+            return View(model);
+        }
     }
 }

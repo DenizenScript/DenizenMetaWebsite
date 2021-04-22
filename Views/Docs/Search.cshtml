@@ -1,0 +1,17 @@
+@model DocViewModel
+@{
+    ViewData["Title"] = (Model.IsAll ? "" : "Search '" + Model.SearchText + "' | ");
+    ViewData["Description"] = "Search for '" + Model.SearchText + "'";
+    ViewData["MetaColor"] = "#FFFFFF";
+}
+
+<span class="center_helper">
+    <div class="jumbotron">
+        <h3>Denizen Script Meta Documentation Search</h3>
+        <br>Learn about how Denizen works in <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
+    </div>
+    
+    <h5>Showing @Model.CurrentlyShown out of @Model.Max search results for <code>@Model.SearchText</code>...</h5>
+</span>
+
+@Model.Content

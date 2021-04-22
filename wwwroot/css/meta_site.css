@@ -85,3 +85,8 @@ pre {
 pre {
     margin-bottom: 0.2rem;
 }
+.topsearchbar {
+    text-align: right;
+    right: 16px;
+    position: absolute;
+}

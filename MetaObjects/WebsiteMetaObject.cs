@@ -20,12 +20,18 @@ namespace DenizenMetaWebsite.MetaObjects
         /// <summary>Return true if the object matches some search text, otherwise return false.</summary>
         public abstract bool MatchesSearch(string search);
 
+        /// <summary>The generic (untyped) MetaObject value.</summary>
+        public abstract MetaObject ObjectGeneric { get; }
+
         /// <summary>Object group or similar, if any, for sorting.</summary>
         public abstract string GroupingString { get; }
 
         public const string HTML_PREFIX = "<table class=\"table table-hover\"><tbody>\n";
 
         public const string HTML_SUFFIX = "</tbody></table>\n";
+
+        /// <summary>A copy of <see cref="MetaObject.GetAllSearchableText"/>.</summary>
+        public string AllSearchableText;
 
         public static string EscapeQuickSimple(string content)
         {
@@ -156,6 +162,8 @@ namespace DenizenMetaWebsite.MetaObjects
     {
         /// <summary>The original object.</summary>
         public T Object;
+
+        public override MetaObject ObjectGeneric => Object;
 
         public void AddHtmlEndParts()
         {

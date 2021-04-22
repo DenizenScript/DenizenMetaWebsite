@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DenizenMetaWebsite.MetaObjects;
 using FreneticUtilities.FreneticDataSyntax;
+using FreneticUtilities.FreneticExtensions;
 using FreneticUtilities.FreneticToolkit;
 using SharpDenizenTools.MetaHandlers;
 using SharpDenizenTools.MetaObjects;
@@ -27,6 +28,8 @@ namespace DenizenMetaWebsite
         public static List<WebsiteMetaLanguage> Languages;
 
         public static List<WebsiteMetaMechanism> Mechanisms;
+
+        public static List<WebsiteMetaObject> AllObjects;
 
         public static void Init()
         {
@@ -67,41 +70,47 @@ namespace DenizenMetaWebsite
                 List<WebsiteMetaAction> _actions = new List<WebsiteMetaAction>();
                 List<WebsiteMetaLanguage> _languages = new List<WebsiteMetaLanguage>();
                 List<WebsiteMetaMechanism> _mechanisms = new List<WebsiteMetaMechanism>();
+                List<WebsiteMetaObject> _allObjects = new List<WebsiteMetaObject>();
                 foreach (MetaCommand obj in docs.Commands.Values)
                 {
                     WebsiteMetaCommand webObj = new WebsiteMetaCommand() { Object = obj };
-                    webObj.LoadHTML();
                     _commands.Add(webObj);
                 }
                 foreach (MetaTag obj in docs.Tags.Values)
                 {
                     WebsiteMetaTag webObj = new WebsiteMetaTag() { Object = obj };
-                    webObj.LoadHTML();
                     _tags.Add(webObj);
                 }
                 foreach (MetaEvent obj in docs.Events.Values)
                 {
                     WebsiteMetaEvent webObj = new WebsiteMetaEvent() { Object = obj };
-                    webObj.LoadHTML();
                     _events.Add(webObj);
                 }
                 foreach (MetaAction obj in docs.Actions.Values)
                 {
                     WebsiteMetaAction webObj = new WebsiteMetaAction() { Object = obj };
-                    webObj.LoadHTML();
                     _actions.Add(webObj);
                 }
                 foreach (MetaLanguage obj in docs.Languages.Values)
                 {
                     WebsiteMetaLanguage webObj = new WebsiteMetaLanguage() { Object = obj };
-                    webObj.LoadHTML();
                     _languages.Add(webObj);
                 }
                 foreach (MetaMechanism obj in docs.Mechanisms.Values)
                 {
                     WebsiteMetaMechanism webObj = new WebsiteMetaMechanism() { Object = obj };
-                    webObj.LoadHTML();
                     _mechanisms.Add(webObj);
+                }
+                _allObjects.AddRange(_commands);
+                _allObjects.AddRange(_tags);
+                _allObjects.AddRange(_events);
+                _allObjects.AddRange(_actions);
+                _allObjects.AddRange(_languages);
+                _allObjects.AddRange(_mechanisms);
+                foreach (WebsiteMetaObject obj in _allObjects)
+                {
+                    obj.LoadHTML();
+                    obj.AllSearchableText = obj.ObjectGeneric.GetAllSearchableText().ToLowerFast();
                 }
                 Commands = _commands;
                 Tags = _tags;
@@ -109,6 +118,7 @@ namespace DenizenMetaWebsite
                 Actions = _actions;
                 Languages = _languages;
                 Mechanisms = _mechanisms;
+                AllObjects = _allObjects;
                 MetaDocs.CurrentMeta = docs;
                 Console.WriteLine("Meta loaded and ready!");
             }
