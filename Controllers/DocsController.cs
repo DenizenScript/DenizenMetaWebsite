@@ -139,6 +139,10 @@ namespace DenizenMetaWebsite.Controllers
             }
             if (additional.Count > 0)
             {
+                if (best.Count > 0)
+                {
+                    outText.Append("<br><hr><br>");
+                }
                 string lastType = "";
                 outText.Append("<h4>Imperfect Results</h4>");
                 foreach (WebsiteMetaObject obj in additional)
