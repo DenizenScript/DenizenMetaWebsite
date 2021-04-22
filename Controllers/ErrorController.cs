@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DenizenMetaWebsite.Controllers
 {
+    [ResponseCache(Duration = 60 * 60)] // one hour http cache
     public class ErrorController : Controller
     {
         public IActionResult Any()

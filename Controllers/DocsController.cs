@@ -16,6 +16,7 @@ using System.Web;
 
 namespace DenizenMetaWebsite.Controllers
 {
+    [ResponseCache(Duration = 60 * 10)] // 10 minute http cache
     public class DocsController : Controller
     {
         public static IActionResult HandleMeta<T>(DocsController controller, string search, List<T> objects) where T : WebsiteMetaObject
