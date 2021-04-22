@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -41,6 +42,9 @@ namespace DenizenMetaWebsite
                 app.UseExceptionHandler("/Error/Any");
             }
             MetaSiteCore.Init();
+            FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
+            provider.Mappings[".fds"] = "text/plain";
+            app.UseStaticFiles(new StaticFileOptions() { ContentTypeProvider = provider });
             app.Use(async (context, next) =>
             {
                 string path = context.Request.Path.Value;
@@ -64,7 +68,6 @@ namespace DenizenMetaWebsite
                     }
                 }
             });
-            app.UseStaticFiles();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
