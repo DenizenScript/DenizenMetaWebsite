@@ -167,6 +167,7 @@ namespace DenizenMetaWebsite.MetaObjects
 
         public void AddHtmlEndParts()
         {
+            HtmlContent += TableLine("active", "Synonyms", string.Join(", ", Object.Synonyms), true);
             HtmlContent += TableLine("active", "Group", Object.Group, true);
             HtmlContent += TableLine("warning", "Requires", Object.Plugin, true);
             HtmlContent += TableLine("danger", "Warning(s)", string.Join("\n", Object.Warnings), true);

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FreneticUtilities.FreneticToolkit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,7 @@ namespace DenizenMetaWebsite
     {
         public static void Main(string[] args)
         {
+            SpecialTools.Internationalize();
             CreateHostBuilder(args).Build().Run();
         }
 
