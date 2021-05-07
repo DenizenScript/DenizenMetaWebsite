@@ -118,28 +118,21 @@ namespace DenizenMetaWebsite.MetaObjects
 
         public static string ParseAndEscape(string content)
         {
-            if (!content.Contains("<code>"))
+            int codeBlockStart = content.IndexOf("<code>");
+            if (codeBlockStart == -1)
             {
                 return ParseLinksHelper(content);
             }
-            int lastEnd = 0;
-            StringBuilder parsed = new StringBuilder(content.Length * 2);
-            int codeBlockStart = content.IndexOf("<code>");
-            while (codeBlockStart != -1)
+            int codeBlockEnd = content.IndexOf("</code>", codeBlockStart);
+            if (codeBlockEnd == -1)
             {
-                int codeBlockEnd = content.IndexOf("</code>", codeBlockStart);
-                if (codeBlockEnd == -1)
-                {
-                    Console.Error.WriteLine("Invalid code block found in " + content);
-                    break;
-                }
-                parsed.Append(ParseLinksHelper(content[lastEnd..codeBlockStart])).Append("\n<br>");
-                string codeRaw = content[(codeBlockStart + "<code>".Length)..codeBlockEnd];
-                parsed.Append(ScriptHighlighter.Highlight(codeRaw));
-                lastEnd = codeBlockEnd + "</code>".Length;
-                codeBlockStart = content.IndexOf("<code>", lastEnd);
+                Console.Error.WriteLine($"Invalid code block found in {content}");
+                return ParseLinksHelper(content);
             }
-            return parsed.ToString();
+            string beforeBlock = ParseLinksHelper(content[0..codeBlockStart]);
+            string code = ScriptHighlighter.Highlight(content[(codeBlockStart + "<code>".Length)..codeBlockEnd]);
+            string afterBlock = ParseAndEscape(content[(codeBlockEnd + "</code>".Length)..]);
+            return $"{beforeBlock}\n<br>{code}\n<br>{afterBlock}";
         }
 
         public static string TableLine(string type, string key, string content, bool cleanContent)
