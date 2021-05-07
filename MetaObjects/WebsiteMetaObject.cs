@@ -132,7 +132,7 @@ namespace DenizenMetaWebsite.MetaObjects
             string beforeBlock = ParseLinksHelper(content[0..codeBlockStart]);
             string code = ScriptHighlighter.Highlight(content[(codeBlockStart + "<code>".Length)..codeBlockEnd]);
             string afterBlock = ParseAndEscape(content[(codeBlockEnd + "</code>".Length)..]);
-            return $"{beforeBlock}\n<br>{code}\n<br>{afterBlock}";
+            return $"{beforeBlock}{code}{afterBlock}";
         }
 
         public static string TableLine(string type, string key, string content, bool cleanContent)
