@@ -19,6 +19,9 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent += TableLine("active", "Implements", string.Join(", ", Object.ImplementsNames.Select(n => $"<a href=\"/Docs/ObjectTypes/{Util.EscapeForHTML(n)}\">{Util.EscapeForHTML(n)}</a>")), false);
             HtmlContent += TableLine("active", "Identity Format", Object.Format, true);
             HtmlContent += TableLine("active", "Description", Object.Description, true);
+            IEnumerable<MetaObjectType> extendingTypes = Docs.ObjectTypes.Values.Where(obj => obj.BaseType == Object || obj.Implements.Contains(Object));
+            Console.WriteLine($"Found {extendingTypes.Count()} from {Object.Name} out of {Docs.ObjectTypes.Count}");
+            HtmlContent += TableLine("active", "Extended By", string.Join(", ", extendingTypes.Select(t => $"<a href=\"/Docs/ObjectTypes/{Util.EscapeForHTML(t.CleanName)}\">{Util.EscapeForHTML(t.Name)}</a>")), false);
             AddHtmlEndParts();
         }
 

@@ -1,5 +1,6 @@
 ﻿using DenizenMetaWebsite.Highlighters;
 using FreneticUtilities.FreneticExtensions;
+using SharpDenizenTools.MetaHandlers;
 using SharpDenizenTools.MetaObjects;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,11 @@ namespace DenizenMetaWebsite.MetaObjects
 
         /// <summary>A copy of <see cref="MetaObject.GetAllSearchableText"/>.</summary>
         public string AllSearchableText;
+
+        /// <summary>
+        /// The backing meta docs.
+        /// </summary>
+        public MetaDocs Docs;
 
         public static string EscapeQuickSimple(string content)
         {

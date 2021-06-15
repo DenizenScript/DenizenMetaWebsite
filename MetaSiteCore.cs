@@ -117,6 +117,7 @@ namespace DenizenMetaWebsite
                 _allObjects.AddRange(_mechanisms);
                 foreach (WebsiteMetaObject obj in _allObjects)
                 {
+                    obj.Docs = docs;
                     obj.LoadHTML();
                     obj.AllSearchableText = obj.ObjectGeneric.GetAllSearchableText().ToLowerFast();
                 }
