@@ -21,6 +21,8 @@ namespace DenizenMetaWebsite
 
         public static List<WebsiteMetaTag> Tags;
 
+        public static List<WebsiteMetaObjectType> ObjectTypes;
+
         public static List<WebsiteMetaEvent> Events;
 
         public static List<WebsiteMetaAction> Actions;
@@ -65,6 +67,7 @@ namespace DenizenMetaWebsite
                 Console.WriteLine("Meta loaded, HTMLizing...");
                 List<WebsiteMetaCommand> _commands = new List<WebsiteMetaCommand>();
                 List<WebsiteMetaTag> _tags = new List<WebsiteMetaTag>();
+                List<WebsiteMetaObjectType> _objectTypes = new List<WebsiteMetaObjectType>();
                 List<WebsiteMetaEvent> _events = new List<WebsiteMetaEvent>();
                 List<WebsiteMetaAction> _actions = new List<WebsiteMetaAction>();
                 List<WebsiteMetaLanguage> _languages = new List<WebsiteMetaLanguage>();
@@ -79,6 +82,11 @@ namespace DenizenMetaWebsite
                 {
                     WebsiteMetaTag webObj = new WebsiteMetaTag() { Object = obj };
                     _tags.Add(webObj);
+                }
+                foreach (MetaObjectType obj in docs.ObjectTypes.Values)
+                {
+                    WebsiteMetaObjectType webObj = new WebsiteMetaObjectType() { Object = obj };
+                    _objectTypes.Add(webObj);
                 }
                 foreach (MetaEvent obj in docs.Events.Values)
                 {
@@ -102,6 +110,7 @@ namespace DenizenMetaWebsite
                 }
                 _allObjects.AddRange(_commands);
                 _allObjects.AddRange(_tags);
+                _allObjects.AddRange(_objectTypes);
                 _allObjects.AddRange(_events);
                 _allObjects.AddRange(_actions);
                 _allObjects.AddRange(_languages);
@@ -113,6 +122,7 @@ namespace DenizenMetaWebsite
                 }
                 Commands = _commands;
                 Tags = _tags;
+                ObjectTypes = _objectTypes;
                 Events = _events;
                 Actions = _actions;
                 Languages = _languages;

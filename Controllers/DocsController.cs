@@ -72,7 +72,12 @@ namespace DenizenMetaWebsite.Controllers
         {
             return HandleMeta(this, id, MetaSiteCore.Commands);
         }
-        
+
+        public IActionResult ObjectTypes([Bind] string id)
+        {
+            return HandleMeta(this, id, MetaSiteCore.ObjectTypes);
+        }
+
         public IActionResult Tags([Bind] string id)
         {
             return HandleMeta(this, id, MetaSiteCore.Tags);

@@ -14,7 +14,7 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent = HTML_PREFIX;
             string aID = Util.EscapeForHTML(Object.CleanName);
             HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.TagFull)}</span></a>", false);
-            HtmlContent += TableLine("active", "Returns", Object.Returns, true);
+            HtmlContent += TableLine("active", "Returns", $"<a href=\"/Docs/ObjectTypes/{Util.EscapeForHTML(Object.Returns.Before('('))}\">{Util.EscapeForHTML(Object.Returns)}</a>", false);
             if (!string.IsNullOrWhiteSpace(Object.Mechanism))
             {
                 HtmlContent += TableLine("active", "Mechanism", $"<a href=\"/Docs/Mechanisms/{URLSafe(Object.Mechanism)}\">{Util.EscapeForHTML(Object.Mechanism)}</a>", false);

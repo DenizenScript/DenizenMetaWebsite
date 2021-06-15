@@ -1,0 +1,38 @@
+@model DocViewModel
+@{
+    ViewData["Title"] = (Model.IsAll ? "" : "Search '" + Model.SearchText + "' | ") + "Object Types";
+    ViewData["Description"] = Model.IsAll ? "Object Type List" : "Tag search for '" + Model.SearchText + "'";
+    ViewData["MetaColor"] = "#FFFFFF";
+}
+
+<span class="center_helper">
+    <div class="jumbotron">
+        <h3>Denizen Script Object Types</h3>
+        <br>Object Types are the fundamental types of data passed around in a Denizen script, often seen as the return type of a tag.
+        <br>Learn about how objects work in <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
+    </div>
+    
+    <input type="text" id="search_bar" placeholder="Search Tags...">
+    <script>
+        document.getElementById('search_bar').addEventListener('keydown', function(e) {
+            if (!e)  {
+                var e = window.event;
+            }
+            if (e.keyCode == 13) {
+                document.location.href = '/Docs/ObjectTypes/' + document.getElementById('search_bar').value;
+            }
+        }, false);
+    </script>
+    <br><br>
+
+    @if (Model.IsAll)
+    {
+        <h5>Showing all @Model.Max object types...</h5>
+    }
+    else
+    {
+        <h5>Showing @Model.CurrentlyShown out of @Model.Max object types...</h5>
+    }
+</span>
+
+@Model.Content

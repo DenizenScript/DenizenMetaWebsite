@@ -108,6 +108,9 @@ namespace DenizenMetaWebsite.MetaObjects
                 case "language":
                     fixedLink = $"Language:<a href=\"/Docs/Languages/{targetName}\">{escapedName}</a>";
                     break;
+                case "objecttype":
+                    fixedLink = $"Language:<a href=\"/Docs/ObjectTypes/{targetName}\">{escapedName}</a>";
+                    break;
                 default:
                     Console.Error.WriteLine("Invalid link type '" + linkContent[0] + "' found in " + content);
                     fixedLink = "Error Invalid Link";
