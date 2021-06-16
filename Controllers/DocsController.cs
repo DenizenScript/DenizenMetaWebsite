@@ -28,6 +28,12 @@ namespace DenizenMetaWebsite.Controllers
             {
                 Console.WriteLine($"Search for '{search}' found 0 results");
             }
+            T exactMatch = toDisplay.FirstOrDefault(o => o.ObjectGeneric.CleanName == search);
+            if (exactMatch != null)
+            {
+                toDisplay.Clear();
+                toDisplay.Add(exactMatch);
+            }
             List<string> categories = toDisplay.Select(o => o.GroupingString).Distinct().ToList();
             StringBuilder outText = new StringBuilder();
             outText.Append("<center>");
