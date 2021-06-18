@@ -90,3 +90,6 @@ pre {
     right: 16px;
     position: absolute;
 }
+.smaller_text {
+    font-size: 70%;
+}
