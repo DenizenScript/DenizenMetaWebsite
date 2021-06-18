@@ -73,48 +73,23 @@ namespace DenizenMetaWebsite
                 List<WebsiteMetaLanguage> _languages = new List<WebsiteMetaLanguage>();
                 List<WebsiteMetaMechanism> _mechanisms = new List<WebsiteMetaMechanism>();
                 List<WebsiteMetaObject> _allObjects = new List<WebsiteMetaObject>();
-                foreach (MetaCommand obj in docs.Commands.Values)
+                void procSet<T, T2>(ref List<T> webObjs, ICollection<T2> origObjs) where T: WebsiteMetaObject<T2>, new() where T2: MetaObject
                 {
-                    WebsiteMetaCommand webObj = new WebsiteMetaCommand() { Object = obj };
-                    _commands.Add(webObj);
+                    foreach (T2 obj in origObjs)
+                    {
+                        T webObj = new T() { Object = obj };
+                        webObjs.Add(webObj);
+                    }
+                    webObjs = webObjs.OrderBy(o => string.IsNullOrWhiteSpace(o.Object.Plugin) ? 0 : 1).ThenBy(o => o.Object.Warnings.Count).ThenBy(o => o.Object.Group).ThenBy(o => o.Object.CleanName).ToList();
+                    _allObjects.AddRange(webObjs);
                 }
-                foreach (MetaTag obj in docs.Tags.Values)
-                {
-                    WebsiteMetaTag webObj = new WebsiteMetaTag() { Object = obj };
-                    _tags.Add(webObj);
-                }
-                foreach (MetaObjectType obj in docs.ObjectTypes.Values)
-                {
-                    WebsiteMetaObjectType webObj = new WebsiteMetaObjectType() { Object = obj };
-                    _objectTypes.Add(webObj);
-                }
-                foreach (MetaEvent obj in docs.Events.Values)
-                {
-                    WebsiteMetaEvent webObj = new WebsiteMetaEvent() { Object = obj };
-                    _events.Add(webObj);
-                }
-                foreach (MetaAction obj in docs.Actions.Values)
-                {
-                    WebsiteMetaAction webObj = new WebsiteMetaAction() { Object = obj };
-                    _actions.Add(webObj);
-                }
-                foreach (MetaLanguage obj in docs.Languages.Values)
-                {
-                    WebsiteMetaLanguage webObj = new WebsiteMetaLanguage() { Object = obj };
-                    _languages.Add(webObj);
-                }
-                foreach (MetaMechanism obj in docs.Mechanisms.Values)
-                {
-                    WebsiteMetaMechanism webObj = new WebsiteMetaMechanism() { Object = obj };
-                    _mechanisms.Add(webObj);
-                }
-                _allObjects.AddRange(_commands);
-                _allObjects.AddRange(_tags);
-                _allObjects.AddRange(_objectTypes);
-                _allObjects.AddRange(_events);
-                _allObjects.AddRange(_actions);
-                _allObjects.AddRange(_languages);
-                _allObjects.AddRange(_mechanisms);
+                procSet(ref _commands, docs.Commands.Values);
+                procSet(ref _tags, docs.Tags.Values);
+                procSet(ref _objectTypes, docs.ObjectTypes.Values);
+                procSet(ref _events, docs.Events.Values);
+                procSet(ref _actions, docs.Actions.Values);
+                procSet(ref _languages, docs.Languages.Values);
+                procSet(ref _mechanisms, docs.Mechanisms.Values);
                 foreach (WebsiteMetaObject obj in _allObjects)
                 {
                     obj.Docs = docs;
