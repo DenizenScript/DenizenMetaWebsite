@@ -51,6 +51,9 @@ namespace DenizenMetaWebsite
             ThemeHelper acidic = Dark.MemberwiseClone() as ThemeHelper;
             acidic.ColorCSS = "/css/theme/colors_acidic.css";
             Themes.Add("acidic", acidic);
+            ThemeHelper chrispy = Dark.MemberwiseClone() as ThemeHelper;
+            chrispy.ColorCSS = "/css/theme/colors_chrispy.css";
+            Themes.Add("chrispy", chrispy);
         }
 
         public string BootstrapURL;
