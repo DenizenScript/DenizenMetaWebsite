@@ -5,17 +5,17 @@ meta_extra_data_generator_task:
     debug: false
     script:
     - definemap output:
-        blocks: <server.material_types.filter[is_block].parse[name]>
-        items: <server.material_types.filter[is_item].parse[name]>
-        particles: <server.particle_types>
-        effects: <server.effect_types>
-        sounds: <server.sound_types>
-        entities: <server.entity_types>
-        enchantments: <server.enchantment_keys>
-        biomes: <server.biome_types.parse[name]>
-        attributes: <server.nbt_attribute_types>
-        gamerules: <server.gamerules>
-        potion_effects: <server.potion_effect_types>
-        potions: <server.potion_types>
-        statistics: <server.statistic_types>
-    - log type:none <[output].to_yaml> file:extra_data.fds
+        blocks: <server.material_types.filter[is_block].parse[name].alphabetical>
+        items: <server.material_types.filter[is_item].parse[name].alphabetical>
+        particles: <server.particle_types.alphabetical>
+        effects: <server.effect_types.alphabetical>
+        sounds: <server.sound_types.alphabetical>
+        entities: <server.entity_types.alphabetical>
+        enchantments: <server.enchantment_keys.alphabetical>
+        biomes: <server.biome_types.parse[name].alphabetical>
+        attributes: <server.nbt_attribute_types.alphabetical>
+        gamerules: <server.gamerules.alphabetical>
+        potion_effects: <server.potion_effect_types.alphabetical>
+        potions: <server.potion_types.alphabetical>
+        statistics: <server.statistic_types.alphabetical>
+    - log type:none <[output].to_yaml> file:minecraft.fds
