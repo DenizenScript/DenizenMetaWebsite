@@ -9,7 +9,7 @@ namespace DenizenMetaWebsite.MetaObjects
 {
     public class WebsiteMetaObjectType : WebsiteMetaObject<MetaObjectType>
     {
-        public string LinkObjectType(MetaObjectType type) => $"<a href=\"/Docs/ObjectTypes/{Util.EscapeForHTML(type.CleanName)}\">{Util.EscapeForHTML(type.Name)}</a>";
+        public string LinkObjectType(MetaObjectType type) => type is null ? "ERROR: NULL TYPE?" :  $"<a href=\"/Docs/ObjectTypes/{Util.EscapeForHTML(type.CleanName)}\">{Util.EscapeForHTML(type.Name)}</a>";
 
         public override void LoadHTML()
         {
@@ -17,7 +17,7 @@ namespace DenizenMetaWebsite.MetaObjects
             string aID = Util.EscapeForHTML(Object.CleanName);
             HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span></a>", false);
             HtmlContent += TableLine("active", "Prefix", Object.Prefix.ToLowerFast() == "none" ? "None" : $"{Object.Prefix}@", true);
-            HtmlContent += TableLine("active", "Base Type", LinkObjectType(Object.BaseType), true);
+            HtmlContent += TableLine("active", "Base Type", Object.BaseType == null ? null : LinkObjectType(Object.BaseType), true);
             HtmlContent += TableLine("active", "Implements", string.Join(", ", Object.Implements.Select(LinkObjectType)), false);
             HtmlContent += TableLine("active", "Identity Format", Object.Format, true);
             HtmlContent += TableLine("active", "Description", Object.Description, true);
