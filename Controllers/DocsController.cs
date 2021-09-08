@@ -138,7 +138,7 @@ namespace DenizenMetaWebsite.Controllers
                     if (quality != lastQuality)
                     {
                         lastQuality = quality;
-                        outText.Append($"<h4>Results With Match Quality {quality}</h4>");
+                        outText.Append($"<br><h4>Results With Match Quality {quality}</h4><br>");
                     }
                     if (obj.ObjectGeneric.Type.Name != lastType)
                     {
