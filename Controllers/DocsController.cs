@@ -126,7 +126,7 @@ namespace DenizenMetaWebsite.Controllers
                     results.Add((quality, obj));
                 }
             }
-            results = results.OrderBy(pair => pair.Item1).ThenBy(pair => pair.Item2.ObjectGeneric.Type.Name).ThenBy(pair => pair.Item2.ObjectGeneric.Name).ToList();
+            results = results.OrderBy(pair => -pair.Item1).ThenBy(pair => pair.Item2.ObjectGeneric.Type.Name).ThenBy(pair => pair.Item2.ObjectGeneric.Name).ToList();
             StringBuilder outText = new StringBuilder();
             outText.Append("<center>");
             if (results.Count > 0)
