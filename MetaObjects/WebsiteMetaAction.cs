@@ -28,11 +28,6 @@ namespace DenizenMetaWebsite.MetaObjects
             AddHtmlEndParts();
         }
 
-        public override bool MatchesSearch(string search)
-        {
-            return Object.CleanActions.Any(a => a.Contains(search));
-        }
-
         public override string GroupingString => "NPC Actions";
     }
 }

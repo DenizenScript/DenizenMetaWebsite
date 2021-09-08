@@ -23,11 +23,6 @@ namespace DenizenMetaWebsite.MetaObjects
             AddHtmlEndParts();
         }
 
-        public override bool MatchesSearch(string search)
-        {
-            return Object.CleanName.Contains(search);
-        }
-
         public override string GroupingString => Object.BeforeDot;
     }
 }

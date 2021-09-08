@@ -25,11 +25,6 @@ namespace DenizenMetaWebsite.MetaObjects
             AddHtmlEndParts();
         }
 
-        public override bool MatchesSearch(string search)
-        {
-            return Object.CleanName.Contains(search);
-        }
-
         public override string GroupingString => Object.Format == "N/A" ? "Pseudo ObjectType" : (Object.Plugin == null ? "Core" : "External");
     }
 }

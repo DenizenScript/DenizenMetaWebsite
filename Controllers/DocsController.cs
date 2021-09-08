@@ -23,7 +23,7 @@ namespace DenizenMetaWebsite.Controllers
         {
             ThemeHelper.HandleTheme(controller.Request, controller.ViewData);
             search = search?.ToLowerFast().Replace("%2f", "/");
-            List<T> toDisplay = search == null ? objects : objects.Where(o => o.MatchesSearch(search)).ToList();
+            List<T> toDisplay = search == null ? objects : objects.Where(o => o.ObjectGeneric.SearchHelper.GetMatchQuality(search) > 6).ToList();
             if (toDisplay.IsEmpty())
             {
                 Console.WriteLine($"Search for '{search}' found 0 results");
@@ -117,47 +117,29 @@ namespace DenizenMetaWebsite.Controllers
             {
                 search = "Nothing";
             }
-            List<WebsiteMetaObject> best = new List<WebsiteMetaObject>();
-            List<WebsiteMetaObject> additional = new List<WebsiteMetaObject>();
+            List<(int, WebsiteMetaObject)> results = new List<(int, WebsiteMetaObject)>();
             foreach (WebsiteMetaObject obj in MetaSiteCore.AllObjects)
             {
-                if (obj.MatchesSearch(search))
+                int quality = obj.ObjectGeneric.SearchHelper.GetMatchQuality(search);
+                if (quality > 0)
                 {
-                    best.Add(obj);
-                }
-                else if (obj.AllSearchableText.Contains(search))
-                {
-                    additional.Add(obj);
+                    results.Add((quality, obj));
                 }
             }
-            best = best.OrderBy(obj => obj.ObjectGeneric.Type.Name).ToList();
-            additional = additional.OrderBy(obj => obj.ObjectGeneric.Type.Name).ToList();
+            results = results.OrderBy(pair => pair.Item1).ThenBy(pair => pair.Item2.ObjectGeneric.Type.Name).ThenBy(pair => pair.Item2.ObjectGeneric.Name).ToList();
             StringBuilder outText = new StringBuilder();
             outText.Append("<center>");
-            if (best.Count > 0)
+            if (results.Count > 0)
             {
+                int lastQuality = 0;
                 string lastType = "";
-                outText.Append("<h4>Best Results</h4>");
-                foreach (WebsiteMetaObject obj in best)
+                foreach ((int quality, WebsiteMetaObject obj) in results)
                 {
-                    if (obj.ObjectGeneric.Type.Name != lastType)
+                    if (quality != lastQuality)
                     {
-                        lastType = obj.ObjectGeneric.Type.Name;
-                        outText.Append($"<br><h4>{lastType}</h4><br>");
+                        lastQuality = quality;
+                        outText.Append($"<h4>Results With Match Quality {quality}</h4>");
                     }
-                    outText.Append(obj.HtmlContent);
-                }
-            }
-            if (additional.Count > 0)
-            {
-                if (best.Count > 0)
-                {
-                    outText.Append("<br><hr><br>");
-                }
-                string lastType = "";
-                outText.Append("<h4>Imperfect Results</h4>");
-                foreach (WebsiteMetaObject obj in additional)
-                {
                     if (obj.ObjectGeneric.Type.Name != lastType)
                     {
                         lastType = obj.ObjectGeneric.Type.Name;
@@ -170,7 +152,7 @@ namespace DenizenMetaWebsite.Controllers
             DocViewModel model = new DocViewModel()
             {
                 IsAll = search == null,
-                CurrentlyShown = best.Count + additional.Count,
+                CurrentlyShown = results.Count,
                 Max = MetaSiteCore.AllObjects.Count,
                 Content = new HtmlString(outText.ToString()),
                 SearchText = search

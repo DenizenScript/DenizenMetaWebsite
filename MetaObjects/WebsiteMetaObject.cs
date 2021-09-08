@@ -18,9 +18,6 @@ namespace DenizenMetaWebsite.MetaObjects
         /// <summary>Load the object's data to fill the <see cref="HtmlContent"/>.</summary>
         public abstract void LoadHTML();
 
-        /// <summary>Return true if the object matches some search text, otherwise return false.</summary>
-        public abstract bool MatchesSearch(string search);
-
         /// <summary>The generic (untyped) MetaObject value.</summary>
         public abstract MetaObject ObjectGeneric { get; }
 
@@ -30,9 +27,6 @@ namespace DenizenMetaWebsite.MetaObjects
         public const string HTML_PREFIX = "<table class=\"table table-hover\"><tbody>\n";
 
         public const string HTML_SUFFIX = "</tbody></table>\n";
-
-        /// <summary>A copy of <see cref="MetaObject.GetAllSearchableText"/>.</summary>
-        public string AllSearchableText;
 
         /// <summary>
         /// The backing meta docs.

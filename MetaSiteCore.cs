@@ -94,7 +94,6 @@ namespace DenizenMetaWebsite
                 {
                     obj.Docs = docs;
                     obj.LoadHTML();
-                    obj.AllSearchableText = obj.ObjectGeneric.GetAllSearchableText().ToLowerFast();
                 }
                 Commands = _commands;
                 Tags = _tags;
