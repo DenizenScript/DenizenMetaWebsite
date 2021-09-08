@@ -42,7 +42,7 @@ body {
 }
 .flasher_tool {
     position: absolute;
-    width: 90%;
+    width: 50vw;
     left: 0;
     height: 1.3rem;
 }
