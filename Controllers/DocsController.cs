@@ -86,7 +86,7 @@ namespace DenizenMetaWebsite.Controllers
 
         public IActionResult Tags([Bind] string id)
         {
-            return HandleMeta(this, id, MetaSiteCore.Tags);
+            return HandleMeta(this, MetaTag.CleanTag(id), MetaSiteCore.Tags);
         }
         
         public IActionResult Events([Bind] string id)
