@@ -23,7 +23,10 @@ namespace DenizenMetaWebsite.MetaObjects
             }
             HtmlContent += TableLine("primary", "Event Lines", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\">{fullNameText}</a>", false);
             HtmlContent += TableLine("active", "Triggers", Object.Triggers, true);
-            HtmlContent += TableLine("active", "Has Player", Object.Player, true);
+            if (!string.IsNullOrWhiteSpace(Object.Player))
+            {
+                HtmlContent += TableLine("active", "Has Player", Object.Player + " - this adds switches 'flagged:<flag name>' + 'permission:<node>', in addition to the '<player>' link.", true);
+            }
             HtmlContent += TableLine("active", "Has NPC", Object.NPC, true);
             HtmlContent += TableLine("active", "Switches", string.Join("\n", Object.Switches), true);
             HtmlContent += TableLine("active", "Contexts", WebsiteMetaCommand.HtmlizeTags(Object.Context, Object.Meta), false);
