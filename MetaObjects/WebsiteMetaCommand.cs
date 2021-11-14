@@ -74,6 +74,10 @@ namespace DenizenMetaWebsite.MetaObjects
             {
                 output.Append("</span>");
             }
+            if (spans < 0)
+            {
+                return "<b>(ERROR: SPAN MISALIGN)</b>";
+            }
             return $"<code>{output}</code>";
         }
 
