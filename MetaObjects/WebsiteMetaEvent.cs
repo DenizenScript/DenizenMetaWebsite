@@ -1,7 +1,9 @@
-﻿using SharpDenizenTools.MetaObjects;
+﻿using FreneticUtilities.FreneticExtensions;
+using SharpDenizenTools.MetaObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DenizenMetaWebsite.MetaObjects
@@ -12,16 +14,9 @@ namespace DenizenMetaWebsite.MetaObjects
         {
             HtmlContent = HTML_PREFIX;
             string aID = Util.EscapeForHTML(Object.CleanName);
-            string fullNameText;
-            if (Object.HasMultipleNames)
-            {
-                fullNameText = $"<span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span>\n<br>" + string.Join("\n<br>", Object.MultiNames.Skip(1).Select(s => Util.EscapeForHTML(s)));
-            }
-            else
-            {
-                fullNameText = $"<span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span>";
-            }
-            HtmlContent += TableLine("primary", "Event Lines", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\">{fullNameText}</a>", false);
+            HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.CleanName)}</span></a>", false);
+            HtmlContent += TableLine("primary", "Event Lines", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\">{string.Join("\n<br>", Object.Events.Select(s => Util.EscapeForHTML(s.Replace("'", ""))))}</a>", false);
+            HtmlContent += TableLine("dark", "Generated Examples", string.Join('\n', Object.Events.Select(GenerateSample).JoinWith(Object.Events.Select(GenerateSample)).Distinct()), true);
             HtmlContent += TableLine("active", "Triggers", Object.Triggers, true);
             if (!string.IsNullOrWhiteSpace(Object.Player))
             {
@@ -43,5 +38,58 @@ namespace DenizenMetaWebsite.MetaObjects
         }
 
         public override string GroupingString => Object.Group ?? "Error: Missing Group";
+
+        private static readonly Random random = new Random();
+
+        public string GenerateSample(string line)
+        {
+            StringBuilder sb = new StringBuilder(line.Length * 2);
+            sb.Append(random.NextDouble() > 0.4 ? "after" : "on");
+            string[] parts = line.SplitFast(' ');
+            bool skipSpace = false;
+            for (int i = 0; i < parts.Length; i++)
+            {
+                string part = parts[i];
+                if (!skipSpace)
+                {
+                    sb.Append(' ');
+                }
+                if (part.EndsWithFast(')'))
+                {
+                    part = part[..^1];
+                }
+                if (part.StartsWithFast('('))
+                {
+                    if (random.NextDouble() > 0.5)
+                    {
+                        skipSpace = true;
+                        while (i < parts.Length && !parts[i].EndsWithFast(')'))
+                        {
+                            i++;
+                        }
+                        continue;
+                    }
+                    else
+                    {
+                        part = part[1..];
+                    }
+                }
+                if (part.StartsWithFast('<') && part.EndsWithFast('>'))
+                {
+                    sb.Append(Docs.Data.SuggestExampleFor(part[1..^1]));
+                }
+                else if (part.Contains('|'))
+                {
+                    string[] options = part.SplitFast('|');
+                    sb.Append(options[random.Next(options.Length)]);
+                }
+                else
+                {
+                    sb.Append(part);
+                }
+            }
+            sb.Append(':');
+            return sb.ToString();
+        }
     }
 }

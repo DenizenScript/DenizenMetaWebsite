@@ -19,11 +19,15 @@ namespace DenizenMetaWebsite.Controllers
     [ResponseCache(Duration = 60 * 10)] // 10 minute http cache
     public class DocsController : Controller
     {
-        public static IActionResult HandleMeta<T>(DocsController controller, string search, List<T> objects) where T : WebsiteMetaObject
+        public static IActionResult HandleMeta<T>(DocsController controller, string search, List<T> objects, List<T> extraSearchResults = null) where T : WebsiteMetaObject
         {
             ThemeHelper.HandleTheme(controller.Request, controller.ViewData);
             search = search?.ToLowerFast().Replace("%2f", "/");
             List<T> toDisplay = search == null ? objects : objects.Where(o => o.ObjectGeneric.SearchHelper.GetMatchQuality(search) > 6).ToList();
+            if (extraSearchResults != null)
+            {
+                toDisplay.InsertRange(0, extraSearchResults);
+            }
             if (toDisplay.IsEmpty())
             {
                 Console.WriteLine($"Search for '{search}' found 0 results");
@@ -49,7 +53,7 @@ namespace DenizenMetaWebsite.Controllers
                 {
                     string linkable = HttpUtility.UrlEncode(category.ToLowerFast());
                     outText.Append($"<br><hr><br><h4>Category: <a id=\"{linkable}\" href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a></h4><br>");
-                    outText.Append(string.Join("\n<br>", toDisplay.Where(o => o.GroupingString == category).Select(o => o.HtmlContent)));
+                    outText.Append(string.Join("\n<br>", toDisplay.Where(o => o.GroupingString == category).Distinct().Select(o => o.HtmlContent)));
                 }
             }
             else
@@ -91,7 +95,16 @@ namespace DenizenMetaWebsite.Controllers
         
         public IActionResult Events([Bind] string id)
         {
-            return HandleMeta(this, id, MetaSiteCore.Events);
+            List<WebsiteMetaEvent> addedEvent = new List<WebsiteMetaEvent>();
+            if (id != null)
+            {
+                List<MetaEvent> evts = MetaDocs.CurrentMeta.FindEventsFor(id, true, false);
+                if (evts != null)
+                {
+                    addedEvent.AddRange(evts.Select(e => MetaSiteCore.Events.First(we => we.Object == e))); // TODO: This is a dirty lookup hack
+                }
+            }
+            return HandleMeta(this, id, MetaSiteCore.Events, addedEvent);
         }
         
         public IActionResult Mechanisms([Bind] string id)
