@@ -63,6 +63,8 @@ namespace DenizenMetaWebsite
             lock (ReloadLock)
             {
                 Console.WriteLine("Reloading meta...");
+                ExtraData.CachePath = "./wwwroot/data/minecraft.fds";
+                ExtraData.ForceCache = true;
                 MetaDocs docs = MetaDocsLoader.DownloadAll();
                 Console.WriteLine("Meta loaded, HTMLizing...");
                 List<WebsiteMetaCommand> _commands = new List<WebsiteMetaCommand>();
