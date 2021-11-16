@@ -39,21 +39,20 @@ namespace DenizenMetaWebsite.MetaObjects
                         output.Append("}</span>");
                         break;
                     case '[':
-                        output.Append("<span class=\"syntax_required\">[");
                         spans++;
+                        output.Append("<span class=\"syntax_required\">[");
                         break;
                     case ']':
                         spans--;
                         output.Append("]</span>");
                         break;
                     case '(':
-                        output.Append("<span class=\"syntax_optional\">(");
                         spans++;
+                        output.Append("<span class=\"syntax_optional\">(");
                         break;
                     case ')':
                         spans--;
                         output.Append(")</span>");
-                        spans--;
                         break;
                     case '&':
                         output.Append("&amp;");
