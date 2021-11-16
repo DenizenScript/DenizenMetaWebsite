@@ -53,6 +53,7 @@ namespace DenizenMetaWebsite.MetaObjects
                     case ')':
                         spans--;
                         output.Append(")</span>");
+                        spans--;
                         break;
                     case '&':
                         output.Append("&amp;");
@@ -76,7 +77,8 @@ namespace DenizenMetaWebsite.MetaObjects
             }
             if (spans < 0)
             {
-                return "<b>(ERROR: SPAN MISALIGN)</b>";
+                Console.Error.WriteLine($"Span misalign for command {cmd}: got {output} which is {spans}");
+                return $"<b>(ERROR: SPAN MISALIGN {spans})</b>";
             }
             return $"<code>{output}</code>";
         }
