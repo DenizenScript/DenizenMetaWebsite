@@ -15,7 +15,7 @@ namespace DenizenMetaWebsite.MetaObjects
         public static string HtmlizeSyntax(string syntax)
         {
             string cmd = syntax.BeforeAndAfter(' ', out syntax);
-            StringBuilder output = new StringBuilder(syntax.Length * 2);
+            StringBuilder output = new(syntax.Length * 2);
             output.Append($"<span class=\"syntax_command\">{Util.EscapeForHTML(cmd)}</span> ");
             int spans = 0;
             foreach (char c in syntax)
@@ -83,7 +83,7 @@ namespace DenizenMetaWebsite.MetaObjects
 
         public static string HtmlizeTags(string[] tags, MetaDocs meta)
         {
-            StringBuilder tagOutput = new StringBuilder();
+            StringBuilder tagOutput = new();
             foreach (string tag in tags)
             {
                 string[] parts = tag.Split(' ', 2);

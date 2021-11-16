@@ -46,7 +46,7 @@ namespace DenizenMetaWebsite
 
         public static DateTimeOffset LastReload;
 
-        public static LockObject ReloadTimeLock = new LockObject(), ReloadLock = new LockObject();
+        public static LockObject ReloadTimeLock = new(), ReloadLock = new();
 
         public static void ReloadMeta()
         {
@@ -67,19 +67,19 @@ namespace DenizenMetaWebsite
                 ExtraData.ForceCache = true;
                 MetaDocs docs = MetaDocsLoader.DownloadAll();
                 Console.WriteLine("Meta loaded, HTMLizing...");
-                List<WebsiteMetaCommand> _commands = new List<WebsiteMetaCommand>();
-                List<WebsiteMetaTag> _tags = new List<WebsiteMetaTag>();
-                List<WebsiteMetaObjectType> _objectTypes = new List<WebsiteMetaObjectType>();
-                List<WebsiteMetaEvent> _events = new List<WebsiteMetaEvent>();
-                List<WebsiteMetaAction> _actions = new List<WebsiteMetaAction>();
-                List<WebsiteMetaLanguage> _languages = new List<WebsiteMetaLanguage>();
-                List<WebsiteMetaMechanism> _mechanisms = new List<WebsiteMetaMechanism>();
-                List<WebsiteMetaObject> _allObjects = new List<WebsiteMetaObject>();
+                List<WebsiteMetaCommand> _commands = new();
+                List<WebsiteMetaTag> _tags = new();
+                List<WebsiteMetaObjectType> _objectTypes = new();
+                List<WebsiteMetaEvent> _events = new();
+                List<WebsiteMetaAction> _actions = new();
+                List<WebsiteMetaLanguage> _languages = new();
+                List<WebsiteMetaMechanism> _mechanisms = new();
+                List<WebsiteMetaObject> _allObjects = new();
                 void procSet<T, T2>(ref List<T> webObjs, ICollection<T2> origObjs) where T: WebsiteMetaObject<T2>, new() where T2: MetaObject
                 {
                     foreach (T2 obj in origObjs)
                     {
-                        T webObj = new T() { Object = obj };
+                        T webObj = new() { Object = obj };
                         webObjs.Add(webObj);
                     }
                     webObjs = webObjs.OrderBy(o => string.IsNullOrWhiteSpace(o.Object.Plugin) ? 0 : 1).ThenBy(o => o.Object.Warnings.Count).ThenBy(o => o.Object.Group).ThenBy(o => o.Object.CleanName).ToList();

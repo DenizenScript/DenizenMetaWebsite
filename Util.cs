@@ -14,12 +14,12 @@ namespace DenizenMetaWebsite
         /// <summary>
         /// A helper matcher for characters that need HTML escaping.
         /// </summary>
-        public static AsciiMatcher NeedsEscapeMatcher = new AsciiMatcher("&<>");
+        public static AsciiMatcher NeedsEscapeMatcher = new("&<>");
 
         /// <summary>
         /// A helper matcher for characters that need general cleanup.
         /// </summary>
-        public static AsciiMatcher NeedsCleanupMatcher = new AsciiMatcher("\0\t\r");
+        public static AsciiMatcher NeedsCleanupMatcher = new("\0\t\r");
 
         /// <summary>
         /// Escapes some text to be safe to put into HTML.

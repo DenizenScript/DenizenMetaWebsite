@@ -42,7 +42,7 @@ namespace DenizenMetaWebsite
                 app.UseExceptionHandler("/Error/Any");
             }
             MetaSiteCore.Init();
-            FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
+            FileExtensionContentTypeProvider provider = new();
             provider.Mappings[".fds"] = "text/plain";
             app.UseStaticFiles(new StaticFileOptions() { ContentTypeProvider = provider });
             app.Use(async (context, next) =>

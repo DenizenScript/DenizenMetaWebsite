@@ -39,7 +39,7 @@ namespace DenizenMetaWebsite.Controllers
                 toDisplay.Add(exactMatch);
             }
             List<string> categories = toDisplay.Select(o => o.GroupingString).Distinct().ToList();
-            StringBuilder outText = new StringBuilder();
+            StringBuilder outText = new();
             outText.Append("<center>");
             if (categories.Count > 1)
             {
@@ -61,7 +61,7 @@ namespace DenizenMetaWebsite.Controllers
                 outText.Append(string.Join("\n<br>", toDisplay.Select(o => o.HtmlContent)));
             }
             outText.Append("</center>");
-            DocViewModel model = new DocViewModel()
+            DocViewModel model = new()
             {
                 IsAll = search == null,
                 CurrentlyShown = toDisplay.Count,
@@ -95,7 +95,7 @@ namespace DenizenMetaWebsite.Controllers
         
         public IActionResult Events([Bind] string id)
         {
-            List<WebsiteMetaEvent> addedEvent = new List<WebsiteMetaEvent>();
+            List<WebsiteMetaEvent> addedEvent = new();
             if (id != null)
             {
                 List<MetaEvent> evts = MetaDocs.CurrentMeta.FindEventsFor(id, true, false);
@@ -130,7 +130,7 @@ namespace DenizenMetaWebsite.Controllers
             {
                 search = "Nothing";
             }
-            List<(int, WebsiteMetaObject)> results = new List<(int, WebsiteMetaObject)>();
+            List<(int, WebsiteMetaObject)> results = new();
             foreach (WebsiteMetaObject obj in MetaSiteCore.AllObjects)
             {
                 int quality = obj.ObjectGeneric.SearchHelper.GetMatchQuality(search);
@@ -140,7 +140,7 @@ namespace DenizenMetaWebsite.Controllers
                 }
             }
             results = results.OrderBy(pair => -pair.Item1).ThenBy(pair => pair.Item2.ObjectGeneric.Type.Name).ThenBy(pair => pair.Item2.ObjectGeneric.Name).ToList();
-            StringBuilder outText = new StringBuilder();
+            StringBuilder outText = new();
             outText.Append("<center>");
             if (results.Count > 0)
             {
@@ -162,7 +162,7 @@ namespace DenizenMetaWebsite.Controllers
                 }
             }
             outText.Append("</center>");
-            DocViewModel model = new DocViewModel()
+            DocViewModel model = new()
             {
                 IsAll = search == null,
                 CurrentlyShown = results.Count,

@@ -41,11 +41,11 @@ namespace DenizenMetaWebsite.MetaObjects
 
         public override string GroupingString => Object.Group ?? "Error: Missing Group";
 
-        private static readonly Random random = new Random();
+        private static readonly Random random = new();
 
         public string GenerateExplainer(string line)
         {
-            StringBuilder sb = new StringBuilder(line.Length * 2);
+            StringBuilder sb = new(line.Length * 2);
             int spans = 0;
             foreach (string parta in line.SplitFast(' '))
             {
@@ -112,24 +112,24 @@ namespace DenizenMetaWebsite.MetaObjects
 
         public string GenerateFillInExplainer(string part)
         {
-            switch (part)
+            return part switch
             {
-                case "entity": return "fill in any valid entity type, entity script name, or other EntityTag matcher";
-                case "projectile": return "fill in any valid projectile entity type (like an arrow or snowball), entity script name, or other EntityTag matcher";
-                case "vehicle": return "fill in any valid vehicle entity type (like a minecart or a horse), entity script name, or other EntityTag matcher";
-                case "item": return "fill in any valid item material type, item script name, or other ItemTag matcher";
-                case "block": return "fill in any valid block material type or other MaterialTag matcher";
-                case "material": return "fill in any valid MaterialTag matcher";
-                case "area": return "fill in any valid area note name, or 'cuboid', 'polygon', 'ellipsoid', or 'area_flagged:', or other area matcher";
-                case "inventory": return "fill in any valid inventory type name, inventory script name, inventory note name, or other InventoryTag matcher";
-                case "world": return "fill in any world name, or just 'world'";
-                default: return "refer to event documentation to learn what you can fill this spot with";
-            }
+                "entity" => "fill in any valid entity type, entity script name, or other EntityTag matcher",
+                "projectile" => "fill in any valid projectile entity type (like an arrow or snowball), entity script name, or other EntityTag matcher",
+                "vehicle" => "fill in any valid vehicle entity type (like a minecart or a horse), entity script name, or other EntityTag matcher",
+                "item" => "fill in any valid item material type, item script name, or other ItemTag matcher",
+                "block" => "fill in any valid block material type or other MaterialTag matcher",
+                "material" => "fill in any valid MaterialTag matcher",
+                "area" => "fill in any valid area note name, or 'cuboid', 'polygon', 'ellipsoid', or 'area_flagged:', or other area matcher",
+                "inventory" => "fill in any valid inventory type name, inventory script name, inventory note name, or other InventoryTag matcher",
+                "world" => "fill in any world name, or just 'world'",
+                _ => "refer to event documentation to learn what you can fill this spot with",
+            };
         }
 
         public string GenerateSample(string line)
         {
-            StringBuilder sb = new StringBuilder(line.Length * 2);
+            StringBuilder sb = new(line.Length * 2);
             sb.Append(random.NextDouble() > 0.4 ? "after" : "on");
             string[] parts = line.SplitFast(' ');
             bool skipSpace = false;
