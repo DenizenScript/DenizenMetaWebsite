@@ -28,9 +28,7 @@ namespace DenizenMetaWebsite.MetaObjects
 
         public const string HTML_SUFFIX = "</tbody></table>\n";
 
-        /// <summary>
-        /// The backing meta docs.
-        /// </summary>
+        /// <summary>The backing meta docs.</summary>
         public MetaDocs Docs;
 
         public static string EscapeQuickSimple(string content)

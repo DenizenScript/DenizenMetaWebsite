@@ -92,7 +92,7 @@ namespace DenizenMetaWebsite.Controllers
         {
             return HandleMeta(this, id == null ? null : MetaTag.CleanTag(id), MetaSiteCore.Tags);
         }
-        
+
         public IActionResult Events([Bind] string id)
         {
             List<WebsiteMetaEvent> addedEvent = new();
@@ -106,17 +106,17 @@ namespace DenizenMetaWebsite.Controllers
             }
             return HandleMeta(this, id, MetaSiteCore.Events, addedEvent);
         }
-        
+
         public IActionResult Mechanisms([Bind] string id)
         {
             return HandleMeta(this, id, MetaSiteCore.Mechanisms);
         }
-        
+
         public IActionResult Actions([Bind] string id)
         {
             return HandleMeta(this, id, MetaSiteCore.Actions);
         }
-        
+
         public IActionResult Languages([Bind] string id)
         {
             return HandleMeta(this, id, MetaSiteCore.Languages);
