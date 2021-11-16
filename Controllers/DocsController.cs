@@ -19,14 +19,15 @@ namespace DenizenMetaWebsite.Controllers
     [ResponseCache(Duration = 60 * 10)] // 10 minute http cache
     public class DocsController : Controller
     {
-        public static IActionResult HandleMeta<T>(DocsController controller, string search, List<T> objects, List<T> extraSearchResults = null) where T : WebsiteMetaObject
+        public static IActionResult HandleMeta<T>(DocsController controller, string search, List<T> objects, Func<List<T>, List<T>> extraSearchResults = null) where T : WebsiteMetaObject
         {
             ThemeHelper.HandleTheme(controller.Request, controller.ViewData);
             search = search?.ToLowerFast().Replace("%2f", "/");
             List<T> toDisplay = search == null ? objects : objects.Where(o => o.ObjectGeneric.SearchHelper.GetMatchQuality(search) > 6).ToList();
-            if (extraSearchResults != null)
+            List<T> extra = extraSearchResults?.Invoke(toDisplay);
+            if (extra != null)
             {
-                toDisplay.InsertRange(0, extraSearchResults);
+                toDisplay.InsertRange(0, extra);
             }
             if (toDisplay.IsEmpty())
             {
@@ -93,18 +94,31 @@ namespace DenizenMetaWebsite.Controllers
             return HandleMeta(this, id == null ? null : MetaTag.CleanTag(id), MetaSiteCore.Tags);
         }
 
+        private static List<WebsiteMetaEvent> GetExtraEvents(string id)
+        {
+            if (id is not null)
+            {
+                string search = id.ToLowerFast();
+                List<(MetaEvent, int)> evts = MetaDocs.CurrentMeta.GetEventMatchesFor(search, true, false);
+                if (evts is not null && evts.Any(p => p.Item2 > 1))
+                {
+                    IEnumerable<(MetaEvent, int)> betterMatches = evts.Where(p => p.Item1.CleanEvents.Any(e => e.Contains(search)));
+                    if (betterMatches.Any())
+                    {
+                        evts = betterMatches.ToList();
+                    }
+                    int best = evts.Max(p => p.Item2);
+                    IEnumerable<MetaEvent> results = evts.Where(p => p.Item2 >= best - 2).OrderByDescending(p => p.Item2).Select(p => p.Item1);
+                    return results.Select(e => MetaSiteCore.Events.First(we => we.Object == e)).ToList(); // TODO: This is a dirty lookup hack
+                }
+            }
+            return null;
+        }
+
         public IActionResult Events([Bind] string id)
         {
             List<WebsiteMetaEvent> addedEvent = new();
-            if (id != null)
-            {
-                List<MetaEvent> evts = MetaDocs.CurrentMeta.FindEventsFor(id, true, false);
-                if (evts != null)
-                {
-                    addedEvent.AddRange(evts.Select(e => MetaSiteCore.Events.First(we => we.Object == e))); // TODO: This is a dirty lookup hack
-                }
-            }
-            return HandleMeta(this, id, MetaSiteCore.Events, addedEvent);
+            return HandleMeta(this, id, MetaSiteCore.Events, (orig) => orig.IsEmpty() ? GetExtraEvents(id) : null);
         }
 
         public IActionResult Mechanisms([Bind] string id)
