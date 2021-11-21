@@ -132,14 +132,10 @@ namespace DenizenMetaWebsite.MetaObjects
             StringBuilder sb = new(line.Length * 2);
             sb.Append(random.NextDouble() > 0.4 ? "after" : "on");
             string[] parts = line.SplitFast(' ');
-            bool skipSpace = false;
             for (int i = 0; i < parts.Length; i++)
             {
                 string part = parts[i];
-                if (!skipSpace)
-                {
-                    sb.Append(' ');
-                }
+                sb.Append(' ');
                 if (part.EndsWithFast(')'))
                 {
                     part = part[..^1];
@@ -148,7 +144,6 @@ namespace DenizenMetaWebsite.MetaObjects
                 {
                     if (random.NextDouble() > 0.5)
                     {
-                        skipSpace = true;
                         while (i < parts.Length && !parts[i].EndsWithFast(')'))
                         {
                             i++;
@@ -174,8 +169,12 @@ namespace DenizenMetaWebsite.MetaObjects
                     sb.Append(part);
                 }
             }
-            sb.Append(':');
-            return sb.ToString();
+            string text = sb.ToString().Trim();
+            while (text.Contains("  "))
+            {
+                text = text.Replace("  ", " ");
+            }
+            return text + ":";
         }
     }
 }
