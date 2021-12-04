@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace DenizenMetaWebsite.MetaObjects
 {
@@ -121,6 +122,10 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent = HTML_PREFIX;
             string aID = Util.EscapeForHTML(Object.CleanName);
             HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span></a>", false);
+            if (!string.IsNullOrWhiteSpace(Object.Guide))
+            {
+                HtmlContent += TableLine("active", "Related Guide Page", $"<a href=\"{Util.EscapeForHTML(Object.Guide)}\">{Util.EscapeForHTML(Object.Guide)}</a>", false);
+            }
             HtmlContent += TableLine("active", "Syntax", HtmlizeSyntax(Object.Syntax), false);
             HtmlContent += TableLine("active", "Short Description", Object.Short, true);
             HtmlContent += TableLine("active", "Full Description", Object.Description, true);
