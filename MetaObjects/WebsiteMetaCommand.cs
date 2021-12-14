@@ -89,7 +89,7 @@ namespace DenizenMetaWebsite.MetaObjects
             foreach (string tag in tags)
             {
                 string[] parts = tag.Split(' ', 2);
-                string properName = $"<code>{ScriptHighlighter.ColorArgument(Util.EscapeForHTML(parts[0]), false)}</code>";
+                string properName = $"<code>{ScriptHighlighter.ColorArgument(Util.EscapeForHTML(parts[0]), false, "meta-hl")}</code>";
                 if (parts.Length == 2)
                 {
                     tagOutput.Append(properName).Append(' ').Append(ParseAndEscape(parts[1]));
