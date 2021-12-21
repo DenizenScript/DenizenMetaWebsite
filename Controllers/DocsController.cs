@@ -22,7 +22,6 @@ namespace DenizenMetaWebsite.Controllers
         public static IActionResult HandleMeta<T>(DocsController controller, string search, List<T> objects, Func<List<T>, List<T>> extraSearchResults = null) where T : WebsiteMetaObject
         {
             ThemeHelper.HandleTheme(controller.Request, controller.ViewData);
-            search = search?.ToLowerFast().Replace("%2f", "/");
             List<T> toDisplay = search == null ? objects : objects.Where(o => o.ObjectGeneric.SearchHelper.GetMatchQuality(search) > 6).ToList();
             List<T> extra = extraSearchResults?.Invoke(toDisplay);
             if (extra != null)
@@ -79,30 +78,42 @@ namespace DenizenMetaWebsite.Controllers
             return View();
         }
 
+        /// <summary>Inexplicably, ASP.NET does not parse URL encoding input, so, this is needed I guess.</summary>
+        public static string FixID(string id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+            return id.ToLowerFast().Replace('+', ' ').Replace("%2f", "/");
+        }
+
         public IActionResult Commands([Bind] string id)
         {
+            id = FixID(id);
             return HandleMeta(this, id, MetaSiteCore.Commands);
         }
 
         public IActionResult ObjectTypes([Bind] string id)
         {
+            id = FixID(id);
             return HandleMeta(this, id, MetaSiteCore.ObjectTypes);
         }
 
         public IActionResult Tags([Bind] string id)
         {
-            return HandleMeta(this, id == null ? null : MetaTag.CleanTag(id), MetaSiteCore.Tags);
+            id = FixID(id);
+            return HandleMeta(this, id is null ? null : MetaTag.CleanTag(id), MetaSiteCore.Tags);
         }
 
         private static List<WebsiteMetaEvent> GetExtraEvents(string id)
         {
             if (id is not null)
             {
-                string search = id.ToLowerFast();
-                List<(MetaEvent, int)> evts = MetaDocs.CurrentMeta.GetEventMatchesFor(search, true, false);
+                List<(MetaEvent, int)> evts = MetaDocs.CurrentMeta.GetEventMatchesFor(id, true, false);
                 if (evts is not null && evts.Any(p => p.Item2 > 1))
                 {
-                    IEnumerable<(MetaEvent, int)> betterMatches = evts.Where(p => p.Item1.CleanEvents.Any(e => e.Contains(search)));
+                    IEnumerable<(MetaEvent, int)> betterMatches = evts.Where(p => p.Item1.CleanEvents.Any(e => e.Contains(id)));
                     if (betterMatches.Any())
                     {
                         evts = betterMatches.ToList();
@@ -117,37 +128,41 @@ namespace DenizenMetaWebsite.Controllers
 
         public IActionResult Events([Bind] string id)
         {
+            id = FixID(id);
             List<WebsiteMetaEvent> addedEvent = new();
             return HandleMeta(this, id, MetaSiteCore.Events, (orig) => orig.IsEmpty() ? GetExtraEvents(id) : null);
         }
 
         public IActionResult Mechanisms([Bind] string id)
         {
+            id = FixID(id);
             return HandleMeta(this, id, MetaSiteCore.Mechanisms);
         }
 
         public IActionResult Actions([Bind] string id)
         {
+            id = FixID(id);
             return HandleMeta(this, id, MetaSiteCore.Actions);
         }
 
         public IActionResult Languages([Bind] string id)
         {
+            id = FixID(id);
             return HandleMeta(this, id, MetaSiteCore.Languages);
         }
 
         public IActionResult Search([Bind] string id)
         {
+            id = FixID(id);
             ThemeHelper.HandleTheme(Request, ViewData);
-            string search = id?.ToLowerFast().Replace("%2f", "/");
-            if (string.IsNullOrWhiteSpace(search))
+            if (string.IsNullOrWhiteSpace(id))
             {
-                search = "Nothing";
+                id = "Nothing";
             }
             List<(int, WebsiteMetaObject)> results = new();
             foreach (WebsiteMetaObject obj in MetaSiteCore.AllObjects)
             {
-                int quality = obj.ObjectGeneric.SearchHelper.GetMatchQuality(search);
+                int quality = obj.ObjectGeneric.SearchHelper.GetMatchQuality(id);
                 if (quality > 0)
                 {
                     results.Add((quality, obj));
@@ -178,11 +193,11 @@ namespace DenizenMetaWebsite.Controllers
             outText.Append("</center>");
             DocViewModel model = new()
             {
-                IsAll = search == null,
+                IsAll = false,
                 CurrentlyShown = results.Count,
                 Max = MetaSiteCore.AllObjects.Count,
                 Content = new HtmlString(outText.ToString()),
-                SearchText = search
+                SearchText = id
             };
             return View(model);
         }
