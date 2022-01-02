@@ -93,3 +93,7 @@ pre {
 .smaller_text {
     font-size: 70%;
 }
+.meta_url {
+    font-size: 75%;
+    opacity: 0.5;
+}

@@ -75,46 +75,59 @@ namespace DenizenMetaWebsite.MetaObjects
             string escapedName = Util.EscapeForHTML(linkContent[1]);
             string targetName = URLSafe(linkContent[1]);
             string fixedLink;
+            string prefix;
             switch (linkContent[0].ToLowerFast())
             {
                 case "url":
                     if (targetName.StartsWith("https://"))
                     {
-                        fixedLink = $"URL:<a href=\"{targetName}\">{escapedName}</a>";
+                        prefix = "<span title=\"External Link\">&#x1f517;</span>";
+                        fixedLink = $"<a href=\"{targetName}\">{escapedName}</a>";
                     }
                     else
                     {
                         Console.Error.WriteLine("Dangerous URL '" + targetName + "' found in " + content);
                         fixedLink = "Link Blocked";
+                        prefix = "";
                     }
                     break;
                 case "command":
-                    fixedLink = $"Command:<a href=\"/Docs/Commands/{targetName}\">{escapedName}</a>";
+                    prefix = "Command:";
+                    fixedLink = $"<a href=\"/Docs/Commands/{targetName}\">{escapedName}</a>";
                     break;
                 case "tag":
-                    fixedLink = $"Tag:<a href=\"/Docs/Tags/{targetName}\">{escapedName}</a>";
+                    prefix = "Tag:";
+                    fixedLink = $"<a href=\"/Docs/Tags/{targetName}\">{escapedName}</a>";
                     break;
                 case "event":
-                    fixedLink = $"Event:<a href=\"/Docs/Events/{targetName}\">{escapedName}</a>";
+                    prefix = "Event:";
+                    fixedLink = $"<a href=\"/Docs/Events/{targetName}\">{escapedName}</a>";
                     break;
                 case "mechanism":
-                    fixedLink = $"Mechanism:<a href=\"/Docs/Mechanisms/{targetName}\">{escapedName}</a>";
+                    prefix = "Mechanism:";
+                    fixedLink = $"<a href=\"/Docs/Mechanisms/{targetName}\">{escapedName}</a>";
                     break;
                 case "action":
-                    fixedLink = $"Action:<a href=\"/Docs/Actions/{targetName}\">{escapedName}</a>";
+                    prefix = "Action:";
+                    fixedLink = $"<a href=\"/Docs/Actions/{targetName}\">{escapedName}</a>";
                     break;
                 case "language":
-                    fixedLink = $"Language:<a href=\"/Docs/Languages/{targetName}\">{escapedName}</a>";
+                    prefix = "Language:";
+                    fixedLink = $"<a href=\"/Docs/Languages/{targetName}\">{escapedName}</a>";
                     break;
                 case "objecttype":
-                    fixedLink = $"Language:<a href=\"/Docs/ObjectTypes/{targetName}\">{escapedName}</a>";
+                    prefix = "ObjectType";
+                    fixedLink = $"<a href=\"/Docs/ObjectTypes/{targetName}\">{escapedName}</a>";
                     break;
                 default:
                     Console.Error.WriteLine("Invalid link type '" + linkContent[0] + "' found in " + content);
                     fixedLink = "Error Invalid Link";
+                    prefix = "";
                     break;
             }
-            return EscapeQuickSimple(content[..linkStart]) + fixedLink + ParseLinksHelper(content[(linkEnd + 1)..]);
+            string preText = EscapeQuickSimple(content[..linkStart]);
+            string postText = ParseLinksHelper(content[(linkEnd + 1)..]);
+            return $"{preText}<span class=\"meta_url\">{prefix}</span>{fixedLink}{postText}";
         }
 
         public static string ParseAndEscape(string content)
