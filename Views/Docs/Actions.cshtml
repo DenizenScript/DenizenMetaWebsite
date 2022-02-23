@@ -19,7 +19,7 @@
                 var e = window.event;
             }
             if (e.keyCode == 13) {
-                document.location.href = '/Docs/Actions/' + document.getElementById('search_bar').value;
+                document.location.href = '/Docs/Actions/' + encodeURIComponent(document.getElementById('search_bar').value);
             }
         }, false);
     </script>

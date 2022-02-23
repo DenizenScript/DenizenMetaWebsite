@@ -19,7 +19,7 @@
                 var e = window.event;
             }
             if (e.keyCode == 13) {
-                document.location.href = '/Docs/ObjectTypes/' + document.getElementById('search_bar').value;
+                document.location.href = '/Docs/ObjectTypes/' + encodeURIComponent(document.getElementById('search_bar').value);
             }
         }, false);
     </script>
