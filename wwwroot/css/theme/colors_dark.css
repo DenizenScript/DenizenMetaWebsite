@@ -23,7 +23,6 @@ hr {
 .script_colon{color:#66CCFF;font-weight:bold;}
 .script_bad_space{color:#FFFFFF;background-color:#440000;}
 .script_normal{color:#FFFFFF;}
-.script_def_name{color:#006699;font-style:italic;}
 .script_def_name{color:#33CCFF;font-style:italic;}
 /* Denizen Command Syntax Colors */
 .syntax_command{color:#DD99FF;}
