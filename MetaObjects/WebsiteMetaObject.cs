@@ -174,8 +174,8 @@ namespace DenizenMetaWebsite.MetaObjects
 
         public void AddHtmlEndParts()
         {
-            HtmlContent += TableLine("active text-muted smaller_text", "Synonyms (Search Aid)", string.Join(", ", Object.Synonyms), true);
-            HtmlContent += TableLine("active text-muted", "Group", Object.Group, true);
+            HtmlContent += TableLine("default text-muted smaller_text", "Synonyms (Search Aid)", string.Join(", ", Object.Synonyms), true);
+            HtmlContent += TableLine("default text-muted", "Group", Object.Group, true);
             HtmlContent += TableLine("warning", "Requires", Object.Plugin, true);
             HtmlContent += TableLine("danger", "Warning(s)", string.Join("\n", Object.Warnings), true);
             HtmlContent += TableLine("secondary", "Source", Object.SourceFile.StartsWith("https://") ? $"<a href=\"{URLSafe(Object.SourceFile)}\">{Util.EscapeForHTML(Object.SourceFile)}</a>" : Object.SourceFile, false);

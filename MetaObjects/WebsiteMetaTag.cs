@@ -16,15 +16,15 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent = HTML_PREFIX;
             string aID = Util.EscapeForHTML(Object.CleanName);
             HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.TagFull)}</span></a>", false);
-            HtmlContent += TableLine("active", "Returns", $"<a href=\"/Docs/ObjectTypes/{Util.EscapeForHTML(Object.Returns.Before('('))}\">{Util.EscapeForHTML(Object.Returns)}</a>", false);
+            HtmlContent += TableLine("default", "Returns", $"<a href=\"/Docs/ObjectTypes/{Util.EscapeForHTML(Object.Returns.Before('('))}\">{Util.EscapeForHTML(Object.Returns)}</a>", false);
             if (!string.IsNullOrWhiteSpace(Object.Mechanism))
             {
-                HtmlContent += TableLine("active", "Mechanism", $"<a href=\"/Docs/Mechanisms/{URLSafe(Object.Mechanism)}\">{Util.EscapeForHTML(Object.Mechanism)}</a>", false);
+                HtmlContent += TableLine("default", "Mechanism", $"<a href=\"/Docs/Mechanisms/{URLSafe(Object.Mechanism)}\">{Util.EscapeForHTML(Object.Mechanism)}</a>", false);
             }
-            HtmlContent += TableLine("active", "Description", Object.Description, true);
+            HtmlContent += TableLine("default", "Description", Object.Description, true);
             foreach (string example in Object.Examples)
             {
-                HtmlContent += TableLine("active", "Example", ScriptHighlighter.Highlight(example), false);
+                HtmlContent += TableLine("default", "Example", ScriptHighlighter.Highlight(example), false);
             }
             if (Object.Examples.IsEmpty())
             {
@@ -32,7 +32,7 @@ namespace DenizenMetaWebsite.MetaObjects
                 if (example is not null)
                 {
                     string generatedWarning = "title=\"This example is generated randomly based on the tag's format specification. Specific details such as item/entity type names may not actually be applicable to this tag.\"";
-                    HtmlContent += TableLine("active text-muted smaller_text", $"<abbr {generatedWarning}>Generated Example</abbr>", $"<span {generatedWarning}>{ScriptHighlighter.Highlight(example)}</span>", false);
+                    HtmlContent += TableLine("default text-muted smaller_text", $"<abbr {generatedWarning}>Generated Example</abbr>", $"<span {generatedWarning}>{ScriptHighlighter.Highlight(example)}</span>", false);
                 }
             }
             AddHtmlEndParts();

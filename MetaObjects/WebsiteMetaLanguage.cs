@@ -13,7 +13,7 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent = HTML_PREFIX;
             string aID = Util.EscapeForHTML(Object.CleanName);
             HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span></a>", false);
-            HtmlContent += TableLine("active", "Description", Object.Description, true);
+            HtmlContent += TableLine("default", "Description", Object.Description, true);
             AddHtmlEndParts();
         }
 

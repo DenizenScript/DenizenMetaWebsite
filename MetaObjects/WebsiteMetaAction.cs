@@ -22,9 +22,9 @@ namespace DenizenMetaWebsite.MetaObjects
                 fullNameText = $"<span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span>";
             }
             HtmlContent += TableLine("primary", "Action Lines", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\">{fullNameText}</a>", false);
-            HtmlContent += TableLine("active", "Triggers", Object.Triggers, true);
-            HtmlContent += TableLine("active", "Contexts", WebsiteMetaCommand.HtmlizeTags(Object.Context, Object.Meta), false);
-            HtmlContent += TableLine("active", "Determine", string.Join("\n", Object.Determinations), true);
+            HtmlContent += TableLine("default", "Triggers", Object.Triggers, true);
+            HtmlContent += TableLine("default", "Contexts", WebsiteMetaCommand.HtmlizeTags(Object.Context, Object.Meta), false);
+            HtmlContent += TableLine("default", "Determine", string.Join("\n", Object.Determinations), true);
             AddHtmlEndParts();
         }
 

@@ -1,4 +1,5 @@
-﻿using FreneticUtilities.FreneticExtensions;
+﻿using DenizenMetaWebsite.Highlighters;
+using FreneticUtilities.FreneticExtensions;
 using SharpDenizenTools.MetaObjects;
 using System;
 using System.Collections.Generic;
@@ -16,25 +17,32 @@ namespace DenizenMetaWebsite.MetaObjects
             string aID = Util.EscapeForHTML(Object.CleanName);
             HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.CleanName)}</span></a>", false);
             HtmlContent += TableLine("secondary", "Event Lines", string.Join("\n<br>", Object.Events.Select(s => GenerateExplainer(s))), false);
-            string generatedWarning = "title=\"This example is generated randomly based on the event's format specification. Specific details such as item/entity type names may not actually be applicable to this event.\"";
-            string samples = string.Join("\n<br>", Object.Events.Select(GenerateSample).JoinWith(Object.Events.Select(GenerateSample)).Select(Util.EscapeForHTML).Distinct());
-            HtmlContent += TableLine("active text-muted smaller_text", $"<abbr {generatedWarning}>Generated Examples</abbr>", $"<span {generatedWarning}>{samples}</span>", false);
-            HtmlContent += TableLine("active", "Triggers", Object.Triggers, true);
+            HtmlContent += TableLine("default", "Triggers", Object.Triggers, true);
+            foreach (string example in Object.Examples)
+            {
+                HtmlContent += TableLine("default", "Example", ScriptHighlighter.Highlight(example), false);
+            }
+            if (Object.Examples.IsEmpty())
+            {
+                string generatedWarning = "title=\"This example is generated randomly based on the event's format specification. Specific details such as item/entity type names may not actually be applicable to this event.\"";
+                string samples = string.Join("\n<br>", Object.Events.Select(GenerateSample).JoinWith(Object.Events.Select(GenerateSample)).Select(Util.EscapeForHTML).Distinct());
+                HtmlContent += TableLine("default text-muted smaller_text", $"<abbr {generatedWarning}>Generated Examples</abbr>", $"<span {generatedWarning}>{samples}</span>", false);
+            }
             if (!string.IsNullOrWhiteSpace(Object.Player))
             {
-                HtmlContent += TableLine("active", "Has Player", Object.Player + " - this adds switches 'flagged:<flag name>' + 'permission:<node>', in addition to the '<player>' link.", true);
+                HtmlContent += TableLine("default", "Has Player", Object.Player + " - this adds switches 'flagged:<flag name>' + 'permission:<node>', in addition to the '<player>' link.", true);
             }
-            HtmlContent += TableLine("active", "Has NPC", Object.NPC, true);
-            HtmlContent += TableLine("active", "Switches", string.Join("\n", Object.Switches), true);
-            HtmlContent += TableLine("active", "Contexts", WebsiteMetaCommand.HtmlizeTags(Object.Context, Object.Meta), false);
-            HtmlContent += TableLine("active", "Determine", string.Join("\n", Object.Determinations), true);
+            HtmlContent += TableLine("default", "Has NPC", Object.NPC, true);
+            HtmlContent += TableLine("default", "Switches", string.Join("\n", Object.Switches), true);
+            HtmlContent += TableLine("default", "Contexts", WebsiteMetaCommand.HtmlizeTags(Object.Context, Object.Meta), false);
+            HtmlContent += TableLine("default", "Determine", string.Join("\n", Object.Determinations), true);
             if (Object.Cancellable)
             {
-                HtmlContent += TableLine("active", "Cancellable", "True - This adds <context.cancelled> and determine 'cancelled' or 'cancelled:false'", true);
+                HtmlContent += TableLine("default", "Cancellable", "True - This adds <context.cancelled> and determine 'cancelled' or 'cancelled:false'", true);
             }
             if (Object.HasLocation)
             {
-                HtmlContent += TableLine("active", "Has Location", "True - This adds the switches 'in:<area>', 'location_flagged:<flag>', ...", true);
+                HtmlContent += TableLine("default", "Has Location", "True - This adds the switches 'in:<area>', 'location_flagged:<flag>', ...", true);
             }
             AddHtmlEndParts();
         }

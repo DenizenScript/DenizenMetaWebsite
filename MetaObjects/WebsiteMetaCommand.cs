@@ -124,15 +124,15 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span></a>", false);
             if (!string.IsNullOrWhiteSpace(Object.Guide))
             {
-                HtmlContent += TableLine("active", "Related Guide Page", $"<a href=\"{Util.EscapeForHTML(Object.Guide)}\">{Util.EscapeForHTML(Object.Guide)}</a>", false);
+                HtmlContent += TableLine("default", "Related Guide Page", $"<a href=\"{Util.EscapeForHTML(Object.Guide)}\">{Util.EscapeForHTML(Object.Guide)}</a>", false);
             }
-            HtmlContent += TableLine("active", "Syntax", HtmlizeSyntax(Object.Syntax), false);
-            HtmlContent += TableLine("active", "Short Description", Object.Short, true);
-            HtmlContent += TableLine("active", "Full Description", Object.Description, true);
-            HtmlContent += TableLine("active", "Related Tags", HtmlizeTags(Object.Tags, Object.Meta), false);
+            HtmlContent += TableLine("default", "Syntax", HtmlizeSyntax(Object.Syntax), false);
+            HtmlContent += TableLine("default", "Short Description", Object.Short, true);
+            HtmlContent += TableLine("default", "Full Description", Object.Description, true);
+            HtmlContent += TableLine("default", "Related Tags", HtmlizeTags(Object.Tags, Object.Meta), false);
             foreach (string usage in Object.Usages)
             {
-                HtmlContent += TableLine("active", "Usage Example", ScriptHighlighter.Highlight("#" + usage), false);
+                HtmlContent += TableLine("default", "Usage Example", ScriptHighlighter.Highlight("#" + usage), false);
             }
             AddHtmlEndParts();
         }

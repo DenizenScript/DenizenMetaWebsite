@@ -16,12 +16,12 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent = HTML_PREFIX;
             string aID = Util.EscapeForHTML(Object.CleanName);
             HtmlContent += TableLine("primary", "Name", $"<a id=\"{aID}\" href=\"#{aID}\" onclick=\"doFlashFor('{aID}')\"><span class=\"doc_name\">{Util.EscapeForHTML(Object.Name)}</span></a>", false);
-            HtmlContent += TableLine("active", "Prefix", Object.Prefix.ToLowerFast() == "none" ? "None" : $"{Object.Prefix}@", true);
-            HtmlContent += TableLine("active", "Base Type", Object.BaseType == null ? null : LinkObjectType(Object.BaseType), false);
-            HtmlContent += TableLine("active", "Implements", string.Join(", ", Object.Implements.Select(LinkObjectType)), false);
-            HtmlContent += TableLine("active", "Identity Format", Object.Format, true);
-            HtmlContent += TableLine("active", "Description", Object.Description, true);
-            HtmlContent += TableLine("active", "Extended By", string.Join(", ", Object.ExtendedBy.Select(LinkObjectType)), false);
+            HtmlContent += TableLine("default", "Prefix", Object.Prefix.ToLowerFast() == "none" ? "None" : $"{Object.Prefix}@", true);
+            HtmlContent += TableLine("default", "Base Type", Object.BaseType == null ? null : LinkObjectType(Object.BaseType), false);
+            HtmlContent += TableLine("default", "Implements", string.Join(", ", Object.Implements.Select(LinkObjectType)), false);
+            HtmlContent += TableLine("default", "Identity Format", Object.Format, true);
+            HtmlContent += TableLine("default", "Description", Object.Description, true);
+            HtmlContent += TableLine("default", "Extended By", string.Join(", ", Object.ExtendedBy.Select(LinkObjectType)), false);
             AddHtmlEndParts();
         }
 
