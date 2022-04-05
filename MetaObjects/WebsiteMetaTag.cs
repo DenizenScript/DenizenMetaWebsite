@@ -32,15 +32,15 @@ namespace DenizenMetaWebsite.MetaObjects
                 if (example is not null)
                 {
                     string generatedWarning = "title=\"This example is generated randomly based on the tag's format specification. Specific details such as item/entity type names may not actually be applicable to this tag.\"";
-                    HtmlContent += TableLine("default text-muted smaller_text", $"<abbr {generatedWarning}>Generated Example</abbr>", $"<span {generatedWarning}>{ScriptHighlighter.Highlight(example)}</span>", false);
+                    HtmlContent += TableLine("default text-muted slightly_smaller_text", $"<abbr {generatedWarning}>Generated Example</abbr>", $"<span {generatedWarning}>{ScriptHighlighter.Highlight(example)}</span>", false);
                 }
             }
             AddHtmlEndParts();
         }
 
-        public string[] SampleIntegers = new[] { "1", "2", "3", "4" };
+        public static string[] SampleIntegers = new[] { "1", "2", "3", "4" };
 
-        public string[] SampleDecimals = new[] { "1", "1.5", "2", "-1", "0" };
+        public static string[] SampleDecimals = new[] { "1", "1.5", "2", "-1", "0" };
 
         public static AsciiMatcher TagParamTextCleaner = new("<>().,");
 
