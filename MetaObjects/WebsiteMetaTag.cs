@@ -44,6 +44,29 @@ namespace DenizenMetaWebsite.MetaObjects
 
         public static AsciiMatcher TagParamTextCleaner = new("<>().,");
 
+        public string ExamplifyTag(string tag)
+        {
+            switch (Object.Returns.ToLowerFast())
+            {
+                case "elementtag":
+                    return $"- narrate {tag}";
+                case "objecttag":
+                    return $"- narrate \"debug - the object is: {tag}\"";
+                case "elementtag(boolean)":
+                    return $"- if {tag}:\n    - narrate \"it was true!\"\n- else:\n    - narrate \"it was false!\"";
+                case "elementtag(number)":
+                    return $"- narrate \"the number value is {tag}\"";
+                case "elementtag(decimal)":
+                    return $"- narrate \"the decimal value is {tag}\"";
+            }
+            Console.WriteLine($"For {tag} got {Object.Returns} which is {Object.ReturnType} which has {Object.ReturnType?.GeneratedReturnUsageExample.Count}");
+            if (Object.ReturnType is not null && Object.ReturnType.GeneratedReturnUsageExample.Any())
+            {
+                return Object.ReturnType.GeneratedReturnUsageExample[Random.Shared.Next(Object.ReturnType.GeneratedReturnUsageExample.Count)].Replace("%VALUE%", tag);
+            }
+            return $"- narrate {tag}";
+        }
+
         public string GenerateExample()
         {
             if (Object.ParsedFormat.Parts.Count > 2)
@@ -67,9 +90,9 @@ namespace DenizenMetaWebsite.MetaObjects
             {
                 if (Object.ParsedFormat.Parts.Count == 1)
                 {
-                    return $"- narrate <{baseText}>";
+                    return ExamplifyTag($"<{baseText}>");
                 }
-                return $"- narrate <{baseText}.{Object.ParsedFormat.Parts[1].Text}>";
+                return ExamplifyTag($"<{baseText}.{Object.ParsedFormat.Parts[1].Text}>");
             }
             string param;
             string paramLabel = Object.ParsedFormat.Parts.Last().Parameter;
@@ -96,9 +119,9 @@ namespace DenizenMetaWebsite.MetaObjects
             }
             if (Object.ParsedFormat.Parts.Count == 1)
             {
-                return $"- narrate <{baseText}[{param}]>";
+                return ExamplifyTag($"<{baseText}[{param}]>");
             }
-            return $"- narrate <{baseText}.{Object.ParsedFormat.Parts[1].Text}[{param}]>";
+            return ExamplifyTag($"<{baseText}.{Object.ParsedFormat.Parts[1].Text}[{param}]>");
         }
 
         public override string GroupingString => Object.BeforeDot;
