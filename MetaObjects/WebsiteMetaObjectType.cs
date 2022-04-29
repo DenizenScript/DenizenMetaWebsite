@@ -21,6 +21,7 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent += TableLine("default", "Implements", string.Join(", ", Object.Implements.Select(LinkObjectType)), false);
             HtmlContent += TableLine("default", "Identity Format", Object.Format, true);
             HtmlContent += TableLine("default", "Description", Object.Description, true);
+            HtmlContent += TableLine("default", "Matchable", Object.Matchable, true);
             HtmlContent += TableLine("default", "Extended By", string.Join(", ", Object.ExtendedBy.Select(LinkObjectType)), false);
             AddHtmlEndParts();
         }
