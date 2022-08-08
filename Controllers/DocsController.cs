@@ -43,7 +43,7 @@ namespace DenizenMetaWebsite.Controllers
             outText.Append("<center>");
             if (categories.Count > 1)
             {
-                outText.Append("<h4>Categories:</h4>");
+                outText.Append("<h4>Categories:</h4><div class=\"categories_container\">");
                 outText.Append(string.Join(" | ", categories.Select(category =>
                 {
                     string linkable = HttpUtility.UrlEncode(category.ToLowerFast());
@@ -55,6 +55,7 @@ namespace DenizenMetaWebsite.Controllers
                     outText.Append($"<br><hr><br><h4>Category: <a id=\"{linkable}\" href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a></h4><br>");
                     outText.Append(string.Join("\n<br>", toDisplay.Where(o => o.GroupingString == category).Distinct().Select(o => o.HtmlContent)));
                 }
+                outText.Append("</div>");
             }
             else
             {
