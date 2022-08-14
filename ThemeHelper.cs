@@ -63,7 +63,7 @@ namespace DenizenMetaWebsite
             breadcrumb.Footer = "Theme: Breadcrumb Dark, created by Breadcrumb";
             Themes.Add("breadcrumb", breadcrumb);
             ThemeHelper baguette = lightRef.MemberwiseClone() as ThemeHelper;
-            baguette.ColorCSS = "/css/theme/colors_apademide.css";
+            baguette.ColorCSS = "/css/theme/colors_baguette.css";
             baguette.Footer = "Theme: Baguette, created by Apademide";
             Themes.Add("baguette", baguette);
         }

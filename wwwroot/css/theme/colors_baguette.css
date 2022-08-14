@@ -1,8 +1,5 @@
-/*    Stylesheet made with love by   */
-/*           apademide.ch            */
-/*                                   */
-/****        VERSION 1.0.1        ****/
-
+@import "colors_light.css";
+/* Baguette (Light): created by apademide */
 /* Global appearance */
 :root{
   --very-black: hsl(60,20%,5%);

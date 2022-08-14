@@ -9,9 +9,9 @@
     <title>@ViewData["Title"] | Denizen Meta Documentation</title>
     <meta name="description" content="@ViewData["Description"]" />
     <meta name="theme-color" content="@ViewData["MetaColor"]" />
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/flasher.js"></script>
-	<script src="/js/themes.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/flasher.js"></script>
+    <script src="/js/themes.js"></script>
 </head>
 <body onload="javascript:autoflash();">
     <nav class="navbar navbar-expand navbar-dark bg-primary navbar-fixed-ifier">
@@ -51,7 +51,7 @@
                         <a class="dropdown-item" title="created by Chris|LordNoob" onclick="changetheme('chrispy')">Chrispy Dark</a>
                         <a class="dropdown-item" title="created by Breadcrumb" onclick="changetheme('breadcrumb')">Breadcrumb Dark</a>
                         <a class="dropdown-item" title="created by Alex 'mcmonkey' Goodwin" onclick="changetheme('light')">Quite Light</a>
-		        <a class="dropdown-item" title="created by Apademide" onclick="changetheme('baguette')">Baguette</a>
+                       <a class="dropdown-item" title="created by Apademide" onclick="changetheme('baguette')">Baguette (Light)</a>
                     </div>
                 </li>
                 <span class="topsearchbar">
@@ -60,7 +60,7 @@
             </ul>
             <script>
                 document.getElementById('top_search_bar').addEventListener('keydown', function(e) {
-                    if (!e)  {
+                    if (!e) {
                         var e = window.event;
                     }
                     if (e.keyCode == 13) {
@@ -79,10 +79,10 @@
             DenizenMetaWebsite (the Denizen Meta-Documentation Website), developed by Alex "mcmonkey" Goodwin on behalf of the Denizen Script team, is a website to let you browse through the Denizen meta-documentation.
             <br>You can find <a href="https://github.com/DenizenScript/DenizenMetaWebsite">DenizenMetaWebsite on GitHub</a>, or talk to us on <a href="https://discord.gg/Q6pZGSR">Discord</a>.
             <br>@ViewData["Theme_Footer"]
-			<br>Made using the @ViewData["Bootstrap_Footer"] by Thomas Park, which was released under the <a href="https://github.com/thomaspark/bootswatch/blob/7fcf822114e71cfb3b89e98afb58055d21f5e240/LICENSE">MIT License</a>.
+            <br>Made using the @ViewData["Bootstrap_Footer"] by Thomas Park, which was released under the <a href="https://github.com/thomaspark/bootswatch/blob/7fcf822114e71cfb3b89e98afb58055d21f5e240/LICENSE">MIT License</a>.
             <p class="text-muted">DenizenMetaWebsite is Copyright (C) 2021-2022 The Denizen Script Team, All Rights Reserved.</p>
         </center>
     </footer>
-	<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
