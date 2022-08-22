@@ -59,7 +59,6 @@ namespace DenizenMetaWebsite.MetaObjects
                 case "elementtag(decimal)":
                     return $"- narrate \"the decimal value is {tag}\"";
             }
-            Console.WriteLine($"For {tag} got {Object.Returns} which is {Object.ReturnType} which has {Object.ReturnType?.GeneratedReturnUsageExample.Count}");
             if (Object.ReturnType is not null && Object.ReturnType.GeneratedReturnUsageExample.Any())
             {
                 return Object.ReturnType.GeneratedReturnUsageExample[Random.Shared.Next(Object.ReturnType.GeneratedReturnUsageExample.Count)].Replace("%VALUE%", tag);
