@@ -5,13 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="FreneticUtilities\*.*" />
-    <Compile Remove="FreneticUtilities\**\*.*" />
     <Compile Remove="SharpDenizenTools\*.*" />
     <Compile Remove="SharpDenizenTools\**\*.*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="FreneticUtilities\FreneticUtilities\FreneticUtilities.csproj" />
+    <PackageReference Include="FreneticLLC.FreneticUtilities" Version="1.0.1" />
     <ProjectReference Include="SharpDenizenTools\SharpDenizenTools\SharpDenizenTools.csproj" />
   </ItemGroup>
 </Project>
