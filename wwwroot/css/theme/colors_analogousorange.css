@@ -1,11 +1,6 @@
 @import "colors_dark.css";
 
-/* 
-   Analogous Orange theme created by drjoenh.
-   Inspired by "One Dark Pro" VSC extension.
-   18.9.2022 
-*/
-
+/* Analogous Orange: created by drjoenh */
 /* Denizen Script Colors */
 .script_colon{color:#FFFFFF;font-weight:bold;}
 .script_comment_code{color:#ed6c1d;}
