@@ -15,6 +15,14 @@ Designed for and tested on Debian Linux.
 - Will by default open on port 8098. To change this, edit `start.sh`
 - It is strongly recommended you run this webserver behind a reverse proxy like Apache2.
 
+### Testing on Windows
+
+- Install [DotNET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
+- Make a folder labeled `config`, inside it make a text file labeled `config.fds`, and add any configuration keys from the sample config below. All keys are optional, a default config would be an empty file.
+- Open this folder in VS Code
+- Use the terminal at the bottom of VS Code, run `.\start.ps1`
+- Open `localhost:8098` in your browser
+
 ### Configuration
 
 ```yml
