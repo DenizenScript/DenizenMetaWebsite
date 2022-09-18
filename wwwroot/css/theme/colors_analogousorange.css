@@ -16,12 +16,12 @@
 .script_def_name{color:#e06c75;font-style:italic;font-weight:bold;}
 .script_key{color:#55aad8;font-weight:bold;}
 .script_key_inline{color:#55aad8;font-style:italic;}
-.script_normal{color:#b9d2a7}
+.script_normal{color:#b9d2a7;}
 .script_quote_double{color:#98c379;}
 .script_quote_single{color: #98c379;}
 .script_tag{color:#e5c07b;}
 .script_tag_param{color:#98c379;}
-.script_tag_param_bracket{color:#d19a66}
+.script_tag_param_bracket{color:#d19a66;}
 /* Denizen Command Syntax Colors */
 .syntax_command{color:#DD99FF;font-style:italic;}
 .syntax_required{color:#e06c75;font-weight:bold;}
