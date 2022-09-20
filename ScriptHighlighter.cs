@@ -142,6 +142,9 @@ namespace DenizenMetaWebsite.Highlighters
             return $"<span class=\"script_bad_space\">{line}</span>";
         }
 
+        /// <summary>Symbols that are allowed as the first character of a tag.</summary>
+        public static AsciiMatcher VALID_TAG_FIRST_CHAR = new(AsciiMatcher.BothCaseLetters + AsciiMatcher.Digits + "&_");
+
         public static string ColorArgument(string arg, bool canQuote, string contextualLabel)
         {
             arg = arg.Replace("&lt;", CHAR_TAG_START.ToString()).Replace("&gt;", CHAR_TAG_END.ToString());
@@ -176,7 +179,7 @@ namespace DenizenMetaWebsite.Highlighters
                         quoteMode = c;
                     }
                 }
-                else if (hasTagEnd && c == CHAR_TAG_START && i + 1 < arg.Length && arg[i + 1] != '-')
+                else if (hasTagEnd && c == CHAR_TAG_START && i + 1 < arg.Length && VALID_TAG_FIRST_CHAR.IsMatch(arg[i + 1]))
                 {
                     inTagCounter++;
                     if (inTagCounter == 1)
@@ -213,7 +216,7 @@ namespace DenizenMetaWebsite.Highlighters
                         lastColor = i;
                     }
                 }
-                else if (c == ' ' && ((!quoted && canQuote) || inTagCounter == 0))
+                else if (c == ' ' && !quoted && canQuote && inTagCounter == 0)
                 {
                     hasTagEnd = CheckIfHasTagEnd(arg[(i + 1)..], quoted, quoteMode, canQuote);
                     output.Append($"<span class=\"script_{defaultColor}\">{arg[lastColor..i]}</span> ");
@@ -259,6 +262,13 @@ namespace DenizenMetaWebsite.Highlighters
                                 output.Append($"<span class=\"script_def_name\">{arg[(i + 1)..(i + 1 + colonIndex)]}</span>");
                                 i += colonIndex;
                                 lastColor = i + 1;
+                                char argStart = nextArg[0];
+                                if (!quoted && canQuote && (argStart == '"' || argStart == '\''))
+                                {
+                                    quoted = true;
+                                    defaultColor = argStart == '"' ? "quote_double" : "quote_single";
+                                    quoteMode = argStart;
+                                }
                             }
                         }
                     }
@@ -273,6 +283,7 @@ namespace DenizenMetaWebsite.Highlighters
 
         public static bool CheckIfHasTagEnd(string arg, bool quoted, char quoteMode, bool canQuote)
         {
+            int paramCount = 0;
             foreach (char c in arg)
             {
                 if (canQuote && (c == '"' || c == '\''))
@@ -287,11 +298,19 @@ namespace DenizenMetaWebsite.Highlighters
                         quoteMode = c;
                     }
                 }
+                else if (c == '[')
+                {
+                    paramCount++;
+                }
+                else if (c == ']' && paramCount > 0)
+                {
+                    paramCount--;
+                }
                 else if (c == CHAR_TAG_END)
                 {
                     return true;
                 }
-                else if (c == ' ' && !quoted && canQuote)
+                else if (c == ' ' && !quoted && canQuote && paramCount == 0)
                 {
                     return false;
                 }
