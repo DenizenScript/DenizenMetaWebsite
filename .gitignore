@@ -4,5 +4,3 @@ config/
 .vs/
 *.suo
 *.user
-.DS_Store
-.DS_Store?
