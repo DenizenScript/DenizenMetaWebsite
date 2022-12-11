@@ -67,6 +67,7 @@ blocks:
 - acacia_door
 - acacia_fence
 - acacia_fence_gate
+- acacia_hanging_sign
 - acacia_leaves
 - acacia_log
 - acacia_planks
@@ -76,6 +77,7 @@ blocks:
 - acacia_slab
 - acacia_stairs
 - acacia_trapdoor
+- acacia_wall_hanging_sign
 - acacia_wall_sign
 - acacia_wood
 - activator_rail
@@ -95,7 +97,24 @@ blocks:
 - azalea_leaves
 - azure_bluet
 - bamboo
+- bamboo_block
+- bamboo_button
+- bamboo_door
+- bamboo_fence
+- bamboo_fence_gate
+- bamboo_hanging_sign
+- bamboo_mosaic
+- bamboo_mosaic_slab
+- bamboo_mosaic_stairs
+- bamboo_planks
+- bamboo_pressure_plate
 - bamboo_sapling
+- bamboo_sign
+- bamboo_slab
+- bamboo_stairs
+- bamboo_trapdoor
+- bamboo_wall_hanging_sign
+- bamboo_wall_sign
 - barrel
 - barrier
 - basalt
@@ -111,6 +130,7 @@ blocks:
 - birch_door
 - birch_fence
 - birch_fence_gate
+- birch_hanging_sign
 - birch_leaves
 - birch_log
 - birch_planks
@@ -120,6 +140,7 @@ blocks:
 - birch_slab
 - birch_stairs
 - birch_trapdoor
+- birch_wall_hanging_sign
 - birch_wall_sign
 - birch_wood
 - black_banner
@@ -207,6 +228,7 @@ blocks:
 - chain_command_block
 - chest
 - chipped_anvil
+- chiseled_bookshelf
 - chiseled_deepslate
 - chiseled_nether_bricks
 - chiseled_polished_blackstone
@@ -250,6 +272,7 @@ blocks:
 - crimson_fence
 - crimson_fence_gate
 - crimson_fungus
+- crimson_hanging_sign
 - crimson_hyphae
 - crimson_nylium
 - crimson_planks
@@ -260,6 +283,7 @@ blocks:
 - crimson_stairs
 - crimson_stem
 - crimson_trapdoor
+- crimson_wall_hanging_sign
 - crimson_wall_sign
 - crying_obsidian
 - cut_copper
@@ -289,6 +313,7 @@ blocks:
 - dark_oak_door
 - dark_oak_fence
 - dark_oak_fence_gate
+- dark_oak_hanging_sign
 - dark_oak_leaves
 - dark_oak_log
 - dark_oak_planks
@@ -298,6 +323,7 @@ blocks:
 - dark_oak_slab
 - dark_oak_stairs
 - dark_oak_trapdoor
+- dark_oak_wall_hanging_sign
 - dark_oak_wall_sign
 - dark_oak_wood
 - dark_prismarine
@@ -462,6 +488,7 @@ blocks:
 - jungle_door
 - jungle_fence
 - jungle_fence_gate
+- jungle_hanging_sign
 - jungle_leaves
 - jungle_log
 - jungle_planks
@@ -471,6 +498,7 @@ blocks:
 - jungle_slab
 - jungle_stairs
 - jungle_trapdoor
+- jungle_wall_hanging_sign
 - jungle_wall_sign
 - jungle_wood
 - kelp
@@ -554,6 +582,7 @@ blocks:
 - mangrove_door
 - mangrove_fence
 - mangrove_fence_gate
+- mangrove_hanging_sign
 - mangrove_leaves
 - mangrove_log
 - mangrove_planks
@@ -564,6 +593,7 @@ blocks:
 - mangrove_slab
 - mangrove_stairs
 - mangrove_trapdoor
+- mangrove_wall_hanging_sign
 - mangrove_wall_sign
 - mangrove_wood
 - medium_amethyst_bud
@@ -606,6 +636,7 @@ blocks:
 - oak_door
 - oak_fence
 - oak_fence_gate
+- oak_hanging_sign
 - oak_leaves
 - oak_log
 - oak_planks
@@ -615,6 +646,7 @@ blocks:
 - oak_slab
 - oak_stairs
 - oak_trapdoor
+- oak_wall_hanging_sign
 - oak_wall_sign
 - oak_wood
 - observer
@@ -645,6 +677,8 @@ blocks:
 - pearlescent_froglight
 - peony
 - petrified_oak_slab
+- piglin_head
+- piglin_wall_head
 - pink_banner
 - pink_bed
 - pink_candle
@@ -852,6 +886,7 @@ blocks:
 - spruce_door
 - spruce_fence
 - spruce_fence_gate
+- spruce_hanging_sign
 - spruce_leaves
 - spruce_log
 - spruce_planks
@@ -861,6 +896,7 @@ blocks:
 - spruce_slab
 - spruce_stairs
 - spruce_trapdoor
+- spruce_wall_hanging_sign
 - spruce_wall_sign
 - spruce_wood
 - sticky_piston
@@ -876,6 +912,7 @@ blocks:
 - stonecutter
 - stripped_acacia_log
 - stripped_acacia_wood
+- stripped_bamboo_block
 - stripped_birch_log
 - stripped_birch_wood
 - stripped_crimson_hyphae
@@ -924,6 +961,7 @@ blocks:
 - warped_fence
 - warped_fence_gate
 - warped_fungus
+- warped_hanging_sign
 - warped_hyphae
 - warped_nylium
 - warped_planks
@@ -934,6 +972,7 @@ blocks:
 - warped_stairs
 - warped_stem
 - warped_trapdoor
+- warped_wall_hanging_sign
 - warped_wall_sign
 - warped_wart_block
 - water
@@ -1204,6 +1243,26 @@ sounds:
 - BLOCK_BAMBOO_SAPLING_HIT
 - BLOCK_BAMBOO_SAPLING_PLACE
 - BLOCK_BAMBOO_STEP
+- BLOCK_BAMBOO_WOOD_BREAK
+- BLOCK_BAMBOO_WOOD_BUTTON_CLICK_OFF
+- BLOCK_BAMBOO_WOOD_BUTTON_CLICK_ON
+- BLOCK_BAMBOO_WOOD_DOOR_CLOSE
+- BLOCK_BAMBOO_WOOD_DOOR_OPEN
+- BLOCK_BAMBOO_WOOD_FALL
+- BLOCK_BAMBOO_WOOD_FENCE_GATE_CLOSE
+- BLOCK_BAMBOO_WOOD_FENCE_GATE_OPEN
+- BLOCK_BAMBOO_WOOD_HANGING_SIGN_BREAK
+- BLOCK_BAMBOO_WOOD_HANGING_SIGN_FALL
+- BLOCK_BAMBOO_WOOD_HANGING_SIGN_HIT
+- BLOCK_BAMBOO_WOOD_HANGING_SIGN_PLACE
+- BLOCK_BAMBOO_WOOD_HANGING_SIGN_STEP
+- BLOCK_BAMBOO_WOOD_HIT
+- BLOCK_BAMBOO_WOOD_PLACE
+- BLOCK_BAMBOO_WOOD_PRESSURE_PLATE_CLICK_OFF
+- BLOCK_BAMBOO_WOOD_PRESSURE_PLATE_CLICK_ON
+- BLOCK_BAMBOO_WOOD_STEP
+- BLOCK_BAMBOO_WOOD_TRAPDOOR_CLOSE
+- BLOCK_BAMBOO_WOOD_TRAPDOOR_OPEN
 - BLOCK_BARREL_CLOSE
 - BLOCK_BARREL_OPEN
 - BLOCK_BASALT_BREAK
@@ -1269,6 +1328,15 @@ sounds:
 - BLOCK_CHEST_CLOSE
 - BLOCK_CHEST_LOCKED
 - BLOCK_CHEST_OPEN
+- BLOCK_CHISELED_BOOKSHELF_BREAK
+- BLOCK_CHISELED_BOOKSHELF_FALL
+- BLOCK_CHISELED_BOOKSHELF_HIT
+- BLOCK_CHISELED_BOOKSHELF_INSERT
+- BLOCK_CHISELED_BOOKSHELF_INSERT_ENCHANTED
+- BLOCK_CHISELED_BOOKSHELF_PICKUP
+- BLOCK_CHISELED_BOOKSHELF_PICKUP_ENCHANTED
+- BLOCK_CHISELED_BOOKSHELF_PLACE
+- BLOCK_CHISELED_BOOKSHELF_STEP
 - BLOCK_CHORUS_FLOWER_DEATH
 - BLOCK_CHORUS_FLOWER_GROW
 - BLOCK_COMPARATOR_CLICK
@@ -1374,6 +1442,11 @@ sounds:
 - BLOCK_HANGING_ROOTS_HIT
 - BLOCK_HANGING_ROOTS_PLACE
 - BLOCK_HANGING_ROOTS_STEP
+- BLOCK_HANGING_SIGN_BREAK
+- BLOCK_HANGING_SIGN_FALL
+- BLOCK_HANGING_SIGN_HIT
+- BLOCK_HANGING_SIGN_PLACE
+- BLOCK_HANGING_SIGN_STEP
 - BLOCK_HONEY_BLOCK_BREAK
 - BLOCK_HONEY_BLOCK_FALL
 - BLOCK_HONEY_BLOCK_HIT
@@ -1466,6 +1539,26 @@ sounds:
 - BLOCK_NETHER_SPROUTS_PLACE
 - BLOCK_NETHER_SPROUTS_STEP
 - BLOCK_NETHER_WART_BREAK
+- BLOCK_NETHER_WOOD_BREAK
+- BLOCK_NETHER_WOOD_BUTTON_CLICK_OFF
+- BLOCK_NETHER_WOOD_BUTTON_CLICK_ON
+- BLOCK_NETHER_WOOD_DOOR_CLOSE
+- BLOCK_NETHER_WOOD_DOOR_OPEN
+- BLOCK_NETHER_WOOD_FALL
+- BLOCK_NETHER_WOOD_FENCE_GATE_CLOSE
+- BLOCK_NETHER_WOOD_FENCE_GATE_OPEN
+- BLOCK_NETHER_WOOD_HANGING_SIGN_BREAK
+- BLOCK_NETHER_WOOD_HANGING_SIGN_FALL
+- BLOCK_NETHER_WOOD_HANGING_SIGN_HIT
+- BLOCK_NETHER_WOOD_HANGING_SIGN_PLACE
+- BLOCK_NETHER_WOOD_HANGING_SIGN_STEP
+- BLOCK_NETHER_WOOD_HIT
+- BLOCK_NETHER_WOOD_PLACE
+- BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_OFF
+- BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_ON
+- BLOCK_NETHER_WOOD_STEP
+- BLOCK_NETHER_WOOD_TRAPDOOR_CLOSE
+- BLOCK_NETHER_WOOD_TRAPDOOR_OPEN
 - BLOCK_NETHERITE_BLOCK_BREAK
 - BLOCK_NETHERITE_BLOCK_FALL
 - BLOCK_NETHERITE_BLOCK_HIT
@@ -1488,6 +1581,12 @@ sounds:
 - BLOCK_NOTE_BLOCK_GUITAR
 - BLOCK_NOTE_BLOCK_HARP
 - BLOCK_NOTE_BLOCK_HAT
+- BLOCK_NOTE_BLOCK_IMITATE_CREEPER
+- BLOCK_NOTE_BLOCK_IMITATE_ENDER_DRAGON
+- BLOCK_NOTE_BLOCK_IMITATE_PIGLIN
+- BLOCK_NOTE_BLOCK_IMITATE_SKELETON
+- BLOCK_NOTE_BLOCK_IMITATE_WITHER_SKELETON
+- BLOCK_NOTE_BLOCK_IMITATE_ZOMBIE
 - BLOCK_NOTE_BLOCK_IRON_XYLOPHONE
 - BLOCK_NOTE_BLOCK_PLING
 - BLOCK_NOTE_BLOCK_SNARE
@@ -1730,6 +1829,17 @@ sounds:
 - ENTITY_BLAZE_SHOOT
 - ENTITY_BOAT_PADDLE_LAND
 - ENTITY_BOAT_PADDLE_WATER
+- ENTITY_CAMEL_AMBIENT
+- ENTITY_CAMEL_DASH
+- ENTITY_CAMEL_DASH_READY
+- ENTITY_CAMEL_DEATH
+- ENTITY_CAMEL_EAT
+- ENTITY_CAMEL_HURT
+- ENTITY_CAMEL_SADDLE
+- ENTITY_CAMEL_SIT
+- ENTITY_CAMEL_STAND
+- ENTITY_CAMEL_STEP
+- ENTITY_CAMEL_STEP_SAND
 - ENTITY_CAT_AMBIENT
 - ENTITY_CAT_BEG_FOR_FOOD
 - ENTITY_CAT_DEATH
@@ -2471,6 +2581,7 @@ entities:
 - BEE
 - BLAZE
 - BOAT
+- CAMEL
 - CAT
 - CAVE_SPIDER
 - CHEST_BOAT
@@ -2723,6 +2834,7 @@ items:
 - acacia_door
 - acacia_fence
 - acacia_fence_gate
+- acacia_hanging_sign
 - acacia_leaves
 - acacia_log
 - acacia_planks
@@ -2756,6 +2868,23 @@ items:
 - azure_bluet
 - baked_potato
 - bamboo
+- bamboo_block
+- bamboo_button
+- bamboo_chest_raft
+- bamboo_door
+- bamboo_fence
+- bamboo_fence_gate
+- bamboo_hanging_sign
+- bamboo_mosaic
+- bamboo_mosaic_slab
+- bamboo_mosaic_stairs
+- bamboo_planks
+- bamboo_pressure_plate
+- bamboo_raft
+- bamboo_sign
+- bamboo_slab
+- bamboo_stairs
+- bamboo_trapdoor
 - barrel
 - barrier
 - basalt
@@ -2777,6 +2906,7 @@ items:
 - birch_door
 - birch_fence
 - birch_fence_gate
+- birch_hanging_sign
 - birch_leaves
 - birch_log
 - birch_planks
@@ -2864,6 +2994,7 @@ items:
 - cactus
 - cake
 - calcite
+- camel_spawn_egg
 - campfire
 - candle
 - carrot
@@ -2885,6 +3016,7 @@ items:
 - chicken
 - chicken_spawn_egg
 - chipped_anvil
+- chiseled_bookshelf
 - chiseled_deepslate
 - chiseled_nether_bricks
 - chiseled_polished_blackstone
@@ -2948,6 +3080,7 @@ items:
 - crimson_fence
 - crimson_fence_gate
 - crimson_fungus
+- crimson_hanging_sign
 - crimson_hyphae
 - crimson_nylium
 - crimson_planks
@@ -2988,6 +3121,7 @@ items:
 - dark_oak_door
 - dark_oak_fence
 - dark_oak_fence_gate
+- dark_oak_hanging_sign
 - dark_oak_leaves
 - dark_oak_log
 - dark_oak_planks
@@ -3087,6 +3221,7 @@ items:
 - end_stone_brick_wall
 - end_stone_bricks
 - ender_chest
+- ender_dragon_spawn_egg
 - ender_eye
 - ender_pearl
 - enderman_spawn_egg
@@ -3221,6 +3356,7 @@ items:
 - iron_boots
 - iron_chestplate
 - iron_door
+- iron_golem_spawn_egg
 - iron_helmet
 - iron_hoe
 - iron_horse_armor
@@ -3242,6 +3378,7 @@ items:
 - jungle_door
 - jungle_fence
 - jungle_fence_gate
+- jungle_hanging_sign
 - jungle_leaves
 - jungle_log
 - jungle_planks
@@ -3342,6 +3479,7 @@ items:
 - mangrove_door
 - mangrove_fence
 - mangrove_fence_gate
+- mangrove_hanging_sign
 - mangrove_leaves
 - mangrove_log
 - mangrove_planks
@@ -3432,6 +3570,7 @@ items:
 - oak_door
 - oak_fence
 - oak_fence_gate
+- oak_hanging_sign
 - oak_leaves
 - oak_log
 - oak_planks
@@ -3479,6 +3618,7 @@ items:
 - pig_spawn_egg
 - piglin_banner_pattern
 - piglin_brute_spawn_egg
+- piglin_head
 - piglin_spawn_egg
 - pillager_spawn_egg
 - pink_banner
@@ -3673,6 +3813,7 @@ items:
 - smooth_stone_slab
 - snow
 - snow_block
+- snow_golem_spawn_egg
 - snowball
 - soul_campfire
 - soul_lantern
@@ -3692,6 +3833,7 @@ items:
 - spruce_door
 - spruce_fence
 - spruce_fence_gate
+- spruce_hanging_sign
 - spruce_leaves
 - spruce_log
 - spruce_planks
@@ -3726,6 +3868,7 @@ items:
 - string
 - stripped_acacia_log
 - stripped_acacia_wood
+- stripped_bamboo_block
 - stripped_birch_log
 - stripped_birch_wood
 - stripped_crimson_hyphae
@@ -3788,6 +3931,7 @@ items:
 - warped_fence_gate
 - warped_fungus
 - warped_fungus_on_a_stick
+- warped_hanging_sign
 - warped_hyphae
 - warped_nylium
 - warped_planks
@@ -3842,6 +3986,7 @@ items:
 - wither_rose
 - wither_skeleton_skull
 - wither_skeleton_spawn_egg
+- wither_spawn_egg
 - wolf_spawn_egg
 - wooden_axe
 - wooden_hoe
@@ -3871,6 +4016,7 @@ items:
 - zombified_piglin_spawn_egg
 gamerules:
 - announceAdvancements
+- blockExplosionDropDecay
 - commandBlockOutput
 - disableElytraMovementCheck
 - disableRaids
@@ -3892,10 +4038,13 @@ gamerules:
 - fireDamage
 - forgiveDeadPlayers
 - freezeDamage
+- globalSoundEvents
 - keepInventory
+- lavaSourceConversion
 - logAdminCommands
 - maxCommandChainLength
 - maxEntityCramming
+- mobExplosionDropDecay
 - mobGriefing
 - naturalRegeneration
 - playersSleepingPercentage
@@ -3903,9 +4052,12 @@ gamerules:
 - reducedDebugInfo
 - sendCommandFeedback
 - showDeathMessages
+- snowAccumulationHeight
 - spawnRadius
 - spectatorsGenerateChunks
+- tntExplosionDropDecay
 - universalAnger
+- waterSourceConversion
 statistics:
 - ANIMALS_BRED
 - ARMOR_CLEANED
