@@ -7,7 +7,7 @@ meta_extra_data_generator_task:
     - definemap output:
         biomes: <server.biome_types.parse[name].alphabetical>
         blocks: <server.material_types.filter[is_block].parse[name].alphabetical>
-        enchantments: <server.enchantment_keys.alphabetical>
+        enchantments: <server.enchantments.parse[name].alphabetical>
         effects: <server.effect_types.alphabetical>
         potion_effects: <server.potion_effect_types.alphabetical>
         sounds: <server.sound_types.alphabetical>
