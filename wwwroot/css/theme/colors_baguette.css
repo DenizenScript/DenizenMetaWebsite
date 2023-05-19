@@ -18,7 +18,6 @@
     --width: 90vw;
   }
 }
-
 body {
   background-color: var(--background);
   color: var(--black);
@@ -42,6 +41,7 @@ hr {
   padding: 10px 20px;
 }
 nav.bg-primary {
+  /* !important required because bootstrap uses it too already >:( */
   background-color: #fff48f !important;
 }
 .navbar-dark .navbar-brand {
