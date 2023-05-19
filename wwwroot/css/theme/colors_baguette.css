@@ -176,6 +176,9 @@ pre > code {
   width: calc(var(--width) - 12vw);
   overflow-y: auto;
 }
+.doc_name {
+  color: #166a54;
+}
 .td-doc-key,
 .td-doc-key:hover {
   min-width: 200px;
