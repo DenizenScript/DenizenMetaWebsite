@@ -2,6 +2,7 @@
 /* Baguette (Light): created by apademide */
 /* Global appearance */
 :root {
+  --d-yellow: #fff48f;
   --very-black: hsl(60, 20%, 5%);
   --black: hsl(54, 10%, 35%);
   --gray: hsl(54, 5%, 80%);
@@ -42,7 +43,7 @@ hr {
 }
 nav.bg-primary {
   /* !important required because bootstrap uses it too already >:( */
-  background-color: #fff48f !important;
+  background-color: var(--d-yellow) !important;
 }
 .navbar-dark .navbar-brand {
   position: relative;
