@@ -201,6 +201,9 @@ td:hover,
   background-color: white;
   color: var(--black);
 }
+.table-primary td {
+  border-color: inherit;
+}
 .table-primary a {
   text-decoration: none;
 }
