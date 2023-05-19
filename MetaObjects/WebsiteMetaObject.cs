@@ -116,8 +116,12 @@ namespace DenizenMetaWebsite.MetaObjects
                     fixedLink = $"<a href=\"/Docs/Languages/{targetName}\">{escapedName}</a>";
                     break;
                 case "objecttype":
-                    prefix = "ObjectType";
+                    prefix = "ObjectType:";
                     fixedLink = $"<a href=\"/Docs/ObjectTypes/{targetName}\">{escapedName}</a>";
+                    break;
+                case "property":
+                    prefix = "Property:";
+                    fixedLink = $"<a href=\"/Docs/Mechanisms/{targetName}\">{escapedName}</a>";
                     break;
                 default:
                     Console.Error.WriteLine("Invalid link type '" + linkContent[0] + "' found in " + content);
