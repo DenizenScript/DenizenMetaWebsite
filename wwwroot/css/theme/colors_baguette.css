@@ -172,7 +172,7 @@ pre {
 }
 pre > code {
   padding: 20px;
-  margin: 6px 0 0 0;
+  margin: 6px 10px 0 0;
   width: calc(var(--width) - 12vw);
   overflow-y: auto;
 }
