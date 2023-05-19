@@ -60,26 +60,8 @@ nav.bg-primary {
 .navbar-dark .navbar-nav .nav-item {
   position: relative;
 }
-.navbar-dark .navbar-nav .nav-item:after,
-.navbar-brand:after {
-  content: "";
-  background-color: white;
-  position: absolute;
-  height: 3px;
-  bottom: 5px;
-  right: 100%;
-  left: 0;
-  transition: all 0.3s cubic-bezier(0.85, 0, 0.15, 1);
-}
-.navbar-dark .navbar-nav .nav-item:hover:after {
-  right: 7px;
-  left: 8px;
-  box-shadow: 1px 1px 0px 2px #222;
-}
-.navbar-brand:hover:after {
-  right: 0px;
-  left: 0px;
-  box-shadow: 1px 1px 0px 2px var(--shadow-color);
+.navbar-dark .navbar-nav .nav-item:hover {
+  text-decoration: underline;
 }
 /* Content's header */
 .center_helper {
