@@ -294,6 +294,7 @@ td:hover,
 }
 .script_def_name {
   color: #fee75c;
+  font-style: normal;
   text-transform: uppercase;
 }
 /* Denizen Command Syntax Colors */
