@@ -1,13 +1,21 @@
 // Config for colors and other SASS variables
 
-// Colors (c prefix stands for color)
 $c-denizen-yellow: #fff48f;
 
+/*
+ * Text-related colors
+ */
 $c-text-titles: #ffffff;
 $c-text-normal: #ffffff;
 $c-text-highlight: #ffffff;
 
 $c-text-underline: #00bacc;
+
+/*
+ * Lines and other layout-related colors
+ */
+// table lines, rules, etc.
+$c-rules-normal: #cfcec9;
 
 /*
  * Syntax highlighting-related colors
@@ -56,3 +64,8 @@ $m-content: var(--content-margin);
     --content-margin: 10px;
   }
 }
+
+/*
+ * Other values
+ */
+$border-normal: $c-rules-normal 1.5px solid;

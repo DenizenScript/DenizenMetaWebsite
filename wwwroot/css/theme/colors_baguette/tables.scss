@@ -6,7 +6,8 @@ body {
     width: 100%;
     overflow: hidden;
 
-    table {
+    // table.table is required to increase the specificity and override Bootstrap
+    table.table {
       display: block;
 
       width: 100%;
@@ -17,21 +18,29 @@ body {
 
       overflow: hidden;
 
+      border: none;
+
       tbody {
         display: flex;
         flex-direction: column;
+
+        border: $border-normal;
 
         tr {
           display: grid;
           grid-template-columns: auto 1fr;
 
-          // .td-doc-key is the "title" column, the first/left one
-          td.td-doc-key {
-            width: 200px;
-          }
-          // the second/right column (the content one) has no class so we select it by position
-          td:last-of-type {
-            overflow: auto;
+          td {
+            border-top: $border-normal;
+
+            // .td-doc-key is the "title" column, the first/left one
+            &.td-doc-key {
+              width: 200px;
+            }
+            // the second/right column (the content one) has no class so we select it by position
+            &:last-of-type {
+              overflow: auto;
+            }
           }
 
           // Table's headline row, "Name: {command|tag|mech|…}"
@@ -50,8 +59,10 @@ body {
             display: flex;
             flex-direction: column;
 
-            td.td-doc-key {
-              width: 100%;
+            td {
+              &.td-doc-key {
+                width: 100%;
+              }
             }
           }
         }
