@@ -58,8 +58,8 @@ a:hover {
 }
 hr {
   margin: 0 0 25px 0;
-  border: 0;
-  border-bottom: var(--gray) 1.5px solid;
+  border: none;
+  border-bottom: $border-normal;
 }
 /* NavBar */
 .navbar {
@@ -101,12 +101,12 @@ nav.bg-primary {
 }
 .jumbotron {
   background-color: transparent;
-  border-bottom: var(--gray) 1.5px solid;
+  border-bottom: $border-normal;
   border-radius: 0;
   grid-column: span 2;
   grid-row: span 1;
   text-align: left;
-  padding: 15px 50% 60px var(--margin);
+  padding: 15px 50% 60px $m-content;
   font-size: 22px;
   line-height: 27px;
   margin-top: 30px;
@@ -124,11 +124,11 @@ input#search_bar {
   grid-column: span 1;
   grid-row: span 1;
   outline: none;
-  padding: 10px 0 10px var(--margin);
+  padding: 10px 0 10px $m-content;
   font-size: 20px;
   border: 0;
-  background-color: var(--background);
-  border-bottom: var(--gray) 1.5px solid;
+  background-color: $c-background;
+  border-bottom: $border-normal;
 }
 h5 {
   grid-column: span 1;
@@ -137,20 +137,20 @@ h5 {
   padding: 10px 30% 10px 15px;
   font-size: 20px;
   text-align: left;
-  border-bottom: var(--gray) 1.5px solid;
-  border-left: var(--gray) 1.5px solid;
+  border-bottom: $border-normal;
+  border-left: $border-normal;
   line-height: 30px;
   margin: 0;
 }
 
 body > center h4 {
   font-size: 30px;
-  padding: 20px 0 15px var(--margin);
+  padding: 20px 0 15px $m-content;
   width: 100%;
   color: $c-text-titles;
 }
 .categories_container {
-  margin: 0 var(--margin) 5px var(--margin);
+  margin: 0 $m-content 5px $m-content;
   font-size: 0px;
 }
 .categories_container > a {
@@ -163,8 +163,8 @@ h4 a {
   background-color: var(--tag);
   padding: 1px 6px;
   margin: 6px 6px 0 0;
-  border-radius: 3px;
+  border-radius: $border-radius;
 }
 body > center > a:first-of-type {
-  margin-left: var(--margin);
+  margin-left: $m-content;
 }
