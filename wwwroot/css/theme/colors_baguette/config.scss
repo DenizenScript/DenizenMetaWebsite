@@ -1,5 +1,4 @@
 // Config for colors and other SASS variables
-
 $c-denizen-yellow: #fff48f;
 
 /*
@@ -67,6 +66,14 @@ $m-codeblock-inline: 0.25rem 0.5rem; // mainly "related tags" and "syntax"
     --content-margin: 15px;
   }
 }
+
+/*
+ * Text-related values
+ */
+// font-sizes
+$fs-text: 1rem; // descriptions, default text
+$fs-text-small: 0.9rem; // table titles, search aids, etc.
+$fs-code: 1rem; // all code blocks, inline code, etc.
 
 /*
  * Other values

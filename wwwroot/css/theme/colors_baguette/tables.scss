@@ -21,7 +21,7 @@ body {
       border: none;
 
       tbody {
-        font-size: 1.1rem;
+        font-size: $fs-text;
 
         display: flex;
         flex-direction: column;
@@ -47,7 +47,7 @@ body {
 
             // .td-doc-key is the "title" column, the first/left one
             &.td-doc-key {
-              font-size: 0.9rem;
+              font-size: $fs-text-small;
               width: 200px;
             }
             // the second/right column (the content one) has no class so we select it by position
@@ -67,6 +67,7 @@ body {
             td {
               // specifically targets code blocks in "usage exemples"
               pre {
+                font-size: $fs-code;
                 border-radius: $border-radius;
                 background-color: $c-codeblock-background;
                 padding: $m-codeblock-multiline;
@@ -76,7 +77,7 @@ body {
               // specifically targets inline code blocks, like "related tags" and "syntax"
               & > code,
               & > a > code {
-                font-size: 1em;
+                font-size: $fs-code;
                 border-radius: $border-radius;
                 background-color: $c-codeblock-background;
                 padding: $m-codeblock-inline;
@@ -93,7 +94,7 @@ body {
           &.smaller_text {
             &,
             & td {
-              font-size: 0.9rem;
+              font-size: $fs-text-small;
             }
           }
         }
