@@ -4,7 +4,7 @@ $c-denizen-yellow: #fff48f;
 /*
  * Text-related colors
  */
-$c-text-titles: #ffffff;
+$c-text-titles: #141412;
 $c-text-normal: #ffffff;
 $c-text-highlight: #ffffff;
 
@@ -70,7 +70,12 @@ $m-codeblock-inline: 0.25rem 0.5rem; // mainly "related tags" and "syntax"
 /*
  * Text-related values
  */
+// font-family
+$ff-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+  "Courier New", monospace; // bootstrap's default for consistency
+
 // font-sizes
+$fs-table-title: 1.6rem; // titles of tables (docs entries)
 $fs-text: 1rem; // descriptions, default text
 $fs-text-small: 0.9rem; // table titles, search aids, etc.
 $fs-code: 1rem; // all code blocks, inline code, etc.

@@ -82,6 +82,17 @@ body {
           &.table-primary {
             td {
               border-top: none;
+
+              a {
+                text-decoration: none;
+                line-height: 1.4;
+                .doc_name {
+                  font-family: $ff-mono;
+                  color: $c-text-titles;
+                  font-size: $fs-table-title;
+                  font-weight: 400;
+                }
+              }
             }
           }
           // .table-secondary == "Source: {url}"
