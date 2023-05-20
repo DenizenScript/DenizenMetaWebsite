@@ -40,6 +40,17 @@ body {
           &.table-secondary {
           }
         }
+
+        @media screen and (max-width: 800px) {
+          tr {
+            display: flex;
+            flex-direction: column;
+
+            td.td-doc-key {
+              width: 100%;
+            }
+          }
+        }
       }
     }
   }
