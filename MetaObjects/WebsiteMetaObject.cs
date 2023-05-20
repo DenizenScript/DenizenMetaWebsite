@@ -159,11 +159,15 @@ namespace DenizenMetaWebsite.MetaObjects
             {
                 return "";
             }
+
+            /// "Extended by" -> "extended-by". Enables to target specific table lines with CSS.
+            string customClass = key.ToLower().Replace(" ", "-");
+
             if (cleanContent)
             {
                 content = ParseAndEscape(content);
             }
-            return $"<tr class=\"table-{type}\"><td class=\"td-doc-key\">{key}</td><td>{content}</td></tr>\n";
+            return $"<tr class=\"table-{type} row-{customClass}\"><td class=\"td-doc-key\">{key}</td><td>{content}</td></tr>\n";
         }
     }
 
