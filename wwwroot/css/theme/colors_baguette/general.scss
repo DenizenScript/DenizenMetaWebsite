@@ -7,7 +7,7 @@ body {
 a,
 a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--green);
+  text-decoration-color: $c-text-underline;
   text-decoration-thickness: 2px;
   color: $c-text-highlight;
 }
@@ -19,7 +19,7 @@ hr {
 /* NavBar */
 .navbar {
   font-size: 16px;
-  box-shadow: 0px 1px 10px var(--shadow-color);
+  box-shadow: $nav-shadow;
   padding: 10px 20px;
 }
 nav.bg-primary {
@@ -36,7 +36,7 @@ nav.bg-primary {
 }
 .navbar-dark .navbar-nav .nav-link,
 .navbar-dark .navbar-nav .nav-link:hover {
-  color: var(--very-black);
+  color: $c-text-highlight;
   text-decoration: none;
 }
 .navbar-dark .navbar-nav .nav-item {
@@ -88,7 +88,7 @@ input#search_bar {
 h5 {
   grid-column: span 1;
   grid-row: span 1;
-  color: var(--very-black);
+  color: $c-text-titles;
   padding: 10px 30% 10px 15px;
   font-size: 20px;
   text-align: left;

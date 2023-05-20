@@ -26,24 +26,3 @@
 @use "./config.scss" as *;
 
 @import "colors_light.css";
-
-/* Baguette (Light): created by apademide */
-/* Global appearance */
-:root {
-  --very-black: hsl(60, 20%, 5%);
-  --black: hsl(54, 10%, 35%);
-  --gray: hsl(54, 5%, 80%);
-  --background: hsl(54, 20%, 97%);
-  --shadow-color: #3635317b;
-  --green: #299b7d;
-  --tag: var(--gray);
-  --margin: 15vw;
-
-  --width: 70vw;
-}
-@media (width < 1200) {
-  :root {
-    --margin: 5vw;
-    --width: 90vw;
-  }
-}
