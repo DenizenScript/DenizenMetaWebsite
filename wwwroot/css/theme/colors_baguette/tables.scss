@@ -33,6 +33,7 @@ body {
           display: grid;
           grid-template-columns: auto 1fr;
 
+          // reset Bootstrap's table row styles
           &,
           &:hover,
           & td,
