@@ -50,10 +50,14 @@ nav.bg-primary {
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 2fr 3fr;
+
+  margin-bottom: 1rem;
+
+  br {
+    display: none;
+  }
 }
-.center_helper br {
-  display: none;
-}
+
 .jumbotron {
   background-color: transparent;
   border-bottom: $border-normal;
