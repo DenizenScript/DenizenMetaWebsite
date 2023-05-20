@@ -60,6 +60,17 @@ body {
                 code {
                 }
               }
+              // specifically targets inline code blocks, like "related tags" and "syntax"
+              & > code,
+              & > a > code {
+                font-size: 1em;
+                border-radius: $border-radius;
+                background-color: $c-codeblock-background;
+                padding: $m-codeblock-inline;
+              }
+              & > a {
+                text-decoration: none;
+              }
             }
           }
           // Table's source row, "Source: {url}"
