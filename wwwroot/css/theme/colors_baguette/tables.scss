@@ -15,7 +15,7 @@ body {
       margin-inline: 0;
       padding-inline: $m-content;
 
-      overflow-x: hidden;
+      overflow: hidden;
 
       tbody {
         display: flex;
@@ -28,6 +28,10 @@ body {
           // .td-doc-key is the "title" column, the first/left one
           td.td-doc-key {
             width: 200px;
+          }
+          // the second/right column (the content one) has no class so we select it by position
+          td:last-of-type {
+            overflow: auto;
           }
 
           // Table's headline row, "Name: {command|tag|mech|…}"
