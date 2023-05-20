@@ -18,6 +18,8 @@
 
 // Responsible for all the syntax highlighting colors and a few others
 @use "./colors.scss";
+// Responsible for the layout of each "doc entry"
+@use "./tables.scss";
 
 @import "colors_light.css";
 
