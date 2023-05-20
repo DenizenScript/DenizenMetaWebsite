@@ -49,6 +49,12 @@ body {
 
           // Table's headline row, "Name: {command|tag|mech|…}"
           &.table-primary {
+            &,
+            & td {
+              color: currentColor;
+              border-top: none;
+              background-color: transparent;
+            }
           }
           // Table's doc row, "{description|syntax|…}"
           &.table-default {
@@ -76,6 +82,11 @@ body {
           }
           // Table's source row, "Source: {url}"
           &.table-secondary {
+            &,
+            & td {
+              color: currentColor;
+              background-color: transparent;
+            }
           }
         }
 
