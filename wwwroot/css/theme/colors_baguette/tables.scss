@@ -1,0 +1,46 @@
+@use "./config.scss" as *;
+
+body {
+  center {
+    text-align: left;
+    width: 100%;
+    overflow: hidden;
+
+    table {
+      display: block;
+
+      width: 100%;
+      max-width: unset; // reset because it's set to 1500px in the original CSS
+
+      margin-inline: 0;
+      padding-inline: $m-content;
+
+      overflow-x: hidden;
+
+      tbody {
+        display: flex;
+        flex-direction: column;
+
+        tr {
+          display: grid;
+          grid-template-columns: auto 1fr;
+
+          // .td-doc-key is the "title" column, the first/left one
+          td.td-doc-key {
+            width: 200px;
+          }
+
+          // Table's headline row, "Name: {command|tag|mech|…}"
+          &.table-primary {
+          }
+          // Table's doc row, "{description|syntax|…}"
+          &.table-default {
+          }
+          // Table's source row, "Source: {url}"
+          &.table-secondary {
+          }
+        }
+      }
+    }
+  }
+}
