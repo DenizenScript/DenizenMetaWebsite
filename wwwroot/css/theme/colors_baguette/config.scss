@@ -9,6 +9,12 @@ $c-text-highlight: #ffffff;
 
 $c-text-underline: #00bacc;
 
+/*
+ * Syntax highlighting-related colors
+ */
+// code blocks/layout colors:
+$c-codeblock-background: #0f0f0a;
+// text/script colors:
 $c-syntax-comment-header: #f47d78;
 $c-syntax-comment-normal: #777788;
 $c-syntax-comment-code: #7fff7f;

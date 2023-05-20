@@ -16,6 +16,9 @@
 
  */
 
+// Responsible for all the syntax highlighting colors and a few others
+@use "./colors.scss";
+
 @import "colors_light.css";
 
 /* Baguette (Light): created by apademide */
