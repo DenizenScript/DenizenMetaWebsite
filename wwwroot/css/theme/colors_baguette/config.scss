@@ -44,4 +44,15 @@ $c-syntax-colon: #00bacc;
  * Layout-related values
  */
 // m prefix stands for margin (also used for padding)
-$m-content: 15vw;
+$m-content: var(--content-margin);
+
+:root {
+  --content-margin: 15vw;
+
+  @media screen and (max-width: 1200px) {
+    --content-margin: 10vw;
+  }
+  @media screen and (max-width: 800px) {
+    --content-margin: 10px;
+  }
+}
