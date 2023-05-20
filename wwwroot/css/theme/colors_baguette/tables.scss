@@ -47,7 +47,7 @@ body {
 
             // .td-doc-key is the "title" column, the first/left one
             &.td-doc-key {
-              font-size: 0.8em;
+              font-size: 0.9rem;
               width: 200px;
             }
             // the second/right column (the content one) has no class so we select it by position
@@ -58,6 +58,9 @@ body {
 
           // Table's headline row, "Name: {command|tag|mech|…}"
           &.table-primary {
+            td {
+              border-top: none;
+            }
           }
           // Table's doc row, "{description|syntax|…}"
           &.table-default {
@@ -83,8 +86,15 @@ body {
               }
             }
           }
-          // Table's source row, "Source: {url}"
-          &.table-secondary {
+          // .table-secondary == "Source: {url}"
+          // .smaller_text == search aids
+          // .text-muted == search aids + group
+          &.table-secondary,
+          &.smaller_text {
+            &,
+            & td {
+              font-size: 0.9rem;
+            }
           }
         }
 
