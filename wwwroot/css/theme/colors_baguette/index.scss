@@ -20,13 +20,14 @@
 @use "./colors.scss";
 // Responsible for the layout of each "doc entry"
 @use "./tables.scss";
+// Provides variables
+@use "./config.scss" as *;
 
 @import "colors_light.css";
 
 /* Baguette (Light): created by apademide */
 /* Global appearance */
 :root {
-  --d-yellow: #fff48f;
   --very-black: hsl(60, 20%, 5%);
   --black: hsl(54, 10%, 35%);
   --gray: hsl(54, 5%, 80%);
@@ -45,15 +46,15 @@
   }
 }
 body {
-  background-color: var(--background);
-  color: var(--black);
+  background-color: $c-background;
+  color: $c-text-normal;
 }
 a,
 a:hover {
   text-decoration: underline;
   text-decoration-color: var(--green);
   text-decoration-thickness: 2px;
-  color: var(--very-black);
+  color: $c-text-highlight;
 }
 hr {
   margin: 0 0 25px 0;
@@ -68,7 +69,7 @@ hr {
 }
 nav.bg-primary {
   /* !important required because bootstrap uses it too already >:( */
-  background-color: var(--d-yellow) !important;
+  background-color: $c-denizen-yellow !important;
 }
 .navbar-dark .navbar-brand {
   position: relative;
@@ -112,7 +113,7 @@ nav.bg-primary {
   margin-bottom: 0;
 }
 .jumbotron h3 {
-  color: var(--very-black);
+  color: $c-text-titles;
   font-size: 40px;
   margin: 0;
 }
@@ -146,7 +147,7 @@ body > center h4 {
   font-size: 30px;
   padding: 20px 0 15px var(--margin);
   width: 100%;
-  color: var(--very-black);
+  color: $c-text-titles;
 }
 .categories_container {
   margin: 0 var(--margin) 5px var(--margin);

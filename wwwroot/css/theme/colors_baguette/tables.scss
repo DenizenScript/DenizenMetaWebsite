@@ -22,6 +22,7 @@ body {
 
       tbody {
         font-size: $fs-text;
+        color: $c-text-normal;
 
         display: flex;
         flex-direction: column;
@@ -47,34 +48,41 @@ body {
 
             // .td-doc-key is the "title" column, the first/left one
             &.td-doc-key {
+              color: $c-text-light;
               font-size: $fs-text-small;
               width: 200px;
             }
             // the second/right column (the content one) has no class so we select it by position
             &:last-of-type {
               overflow: auto;
-            }
 
-            // specifically targets code blocks in "usage exemples"
-            pre {
-              font-size: $fs-code;
-              border-radius: $border-radius;
-              background-color: $c-codeblock-background;
-              padding: $m-codeblock-multiline;
-              code {
+              // specifically targets code blocks in "usage exemples"
+              pre {
+                font-size: $fs-code;
+                border-radius: $border-radius;
+                background-color: $c-codeblock-background;
+                padding: $m-codeblock-multiline;
+                code {
+                }
               }
-            }
-            // specifically targets inline code blocks, like "related tags" and "syntax"
-            & > code,
-            & > a > code {
-              font-size: $fs-code;
-              border-radius: $border-radius;
-              background-color: $c-codeblock-background;
-              padding: $m-codeblock-inline;
-            }
-            // remove underline from "related tags"
-            a:has(code) {
-              text-decoration: none;
+              // specifically targets inline code blocks, like "related tags" and "syntax"
+              & > code,
+              & > a > code {
+                font-size: $fs-code;
+                border-radius: $border-radius;
+                background-color: $c-codeblock-background;
+                padding: $m-codeblock-inline;
+              }
+              // remove underline from "related tags"
+              a:has(code) {
+                text-decoration: none;
+              }
+
+              .meta_url {
+                color: $c-text-light;
+                font-size: $fs-text-small;
+                opacity: 1;
+              }
             }
           }
 
