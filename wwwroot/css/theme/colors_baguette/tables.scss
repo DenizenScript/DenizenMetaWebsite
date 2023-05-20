@@ -26,6 +26,7 @@ body {
         display: flex;
         flex-direction: column;
 
+        border-radius: $border-radius;
         border: $border-normal;
 
         tr {
