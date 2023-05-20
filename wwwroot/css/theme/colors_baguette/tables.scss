@@ -54,37 +54,33 @@ body {
             &:last-of-type {
               overflow: auto;
             }
+
+            // specifically targets code blocks in "usage exemples"
+            pre {
+              font-size: $fs-code;
+              border-radius: $border-radius;
+              background-color: $c-codeblock-background;
+              padding: $m-codeblock-multiline;
+              code {
+              }
+            }
+            // specifically targets inline code blocks, like "related tags" and "syntax"
+            & > code,
+            & > a > code {
+              font-size: $fs-code;
+              border-radius: $border-radius;
+              background-color: $c-codeblock-background;
+              padding: $m-codeblock-inline;
+            }
+            & > a {
+              text-decoration: none;
+            }
           }
 
           // Table's headline row, "Name: {command|tag|mech|…}"
           &.table-primary {
             td {
               border-top: none;
-            }
-          }
-          // Table's doc row, "{description|syntax|…}"
-          &.table-default {
-            td {
-              // specifically targets code blocks in "usage exemples"
-              pre {
-                font-size: $fs-code;
-                border-radius: $border-radius;
-                background-color: $c-codeblock-background;
-                padding: $m-codeblock-multiline;
-                code {
-                }
-              }
-              // specifically targets inline code blocks, like "related tags" and "syntax"
-              & > code,
-              & > a > code {
-                font-size: $fs-code;
-                border-radius: $border-radius;
-                background-color: $c-codeblock-background;
-                padding: $m-codeblock-inline;
-              }
-              & > a {
-                text-decoration: none;
-              }
             }
           }
           // .table-secondary == "Source: {url}"
