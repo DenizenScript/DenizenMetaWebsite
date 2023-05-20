@@ -72,7 +72,8 @@ body {
               background-color: $c-codeblock-background;
               padding: $m-codeblock-inline;
             }
-            & > a {
+            // remove underline from "related tags"
+            a:has(code) {
               text-decoration: none;
             }
           }
