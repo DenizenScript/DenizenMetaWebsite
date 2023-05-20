@@ -21,6 +21,8 @@ body {
       border: none;
 
       tbody {
+        font-size: 1.1rem;
+
         display: flex;
         flex-direction: column;
 
@@ -35,6 +37,7 @@ body {
 
             // .td-doc-key is the "title" column, the first/left one
             &.td-doc-key {
+              font-size: 0.8em;
               width: 200px;
             }
             // the second/right column (the content one) has no class so we select it by position
@@ -48,6 +51,16 @@ body {
           }
           // Table's doc row, "{description|syntax|…}"
           &.table-default {
+            td {
+              // specifically targets code blocks in "usage exemples"
+              pre {
+                border-radius: $border-radius;
+                background-color: $c-codeblock-background;
+                padding: $m-codeblock-multiline;
+                code {
+                }
+              }
+            }
           }
           // Table's source row, "Source: {url}"
           &.table-secondary {
