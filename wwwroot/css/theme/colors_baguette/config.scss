@@ -56,8 +56,8 @@ $c-syntax-colon: #00bacc;
 // m prefix stands for margin (also used for padding)
 $m-content: var(--content-margin);
 
-$m-codeblock-multiline: 0.5rem 0.8rem; // mainly usage exemples
-$m-codeblock-inline: 0.25rem 0.5rem; // mainly "related tags" and "syntax"
+$m-codeblock-multiline: 1.1rem 1.4rem; // mainly usage exemples
+$m-codeblock-inline: 0.3rem 0.6rem; // mainly "related tags" and "syntax"
 
 :root {
   --content-margin: 15vw;
