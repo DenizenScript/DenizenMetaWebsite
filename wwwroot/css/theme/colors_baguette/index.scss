@@ -17,6 +17,7 @@
  */
 
 @import "colors_light.css";
+
 /* Baguette (Light): created by apademide */
 /* Global appearance */
 :root {
@@ -32,7 +33,7 @@
 
   --width: 70vw;
 }
-@media (width < 1200px) {
+@media (width < 1200) {
   :root {
     --margin: 5vw;
     --width: 90vw;
@@ -264,89 +265,4 @@ td:hover,
   background-color: hwb(0 30% 0%);
   color: var(--very-black);
   border-top: 1.5px solid var(--gray);
-}
-/* Denizen Script Colors */
-.script_comment_header {
-  color: #f47d78;
-}
-.script_comment_normal {
-  color: #777788;
-}
-.script_comment_code {
-  color: #7fff7f;
-}
-.script_comment_todo {
-  color: #fee75c;
-  font-weight: bold;
-}
-.script_key {
-  color: #f79f57;
-}
-.script_key_inline {
-  color: #f79f57;
-  font-style: italic;
-}
-.script_command {
-  color: #ff8bf3;
-  font-style: italic;
-}
-.script_quote_double {
-  color: #8aecf3;
-}
-.script_quote_single {
-  color: #8aecf3;
-}
-.script_tag {
-  color: #a1a1ac;
-}
-.script_tag_dot {
-  color: #d951ff;
-}
-.script_tag_param {
-  color: #696cfc;
-}
-.script_tag_param_bracket {
-  color: #7777ff;
-}
-.script_colon {
-  color: #00bacc;
-  font-weight: bold;
-}
-.script_bad_space {
-  color: #ffffff;
-  background-color: #bc4b4b;
-}
-.script_normal {
-  color: #ffffff;
-}
-.script_def_name {
-  color: #fee75c;
-  font-style: normal;
-  text-transform: uppercase;
-}
-/* Denizen Command Syntax Colors */
-.syntax_command {
-  color: #ff8bf3;
-  font-style: italic;
-}
-.syntax_required {
-  color: #696cfc;
-  font-weight: bold;
-}
-.syntax_optional {
-  color: #8aecf3;
-}
-.syntax_default {
-  color: #7fff7f;
-  font-style: italic;
-}
-.syntax_fillable {
-  color: #a1a1ac;
-}
-.syntax_list {
-  color: #eeeeff;
-}
-.syntax_colon {
-  color: #00bacc;
-  font-weight: bold;
 }
