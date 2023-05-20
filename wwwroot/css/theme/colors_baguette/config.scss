@@ -60,7 +60,7 @@ $m-content: var(--content-margin);
 
 $m-codeblock-multiline: 1.1rem 1.4rem; // mainly usage exemples
 $m-codeblock-inline: 0.3rem 0.6rem; // mainly "related tags" and "syntax"
-$m-pills: $m-codeblock-inline; // the pills are the list of categories/tags in the header of each page
+$m-pills: 0.2rem 0.6rem; // the pills are the list of categories/tags in the header of each page
 
 :root {
   --content-margin: 15vw;
