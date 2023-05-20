@@ -168,3 +168,18 @@ h4 a {
 body > center > a:first-of-type {
   margin-left: $m-content;
 }
+footer center {
+  padding-inline: $m-content;
+
+  // rule must take full width
+  > hr {
+    margin-inline: calc($m-content * -1);
+  }
+  // copyright mention
+  > p {
+    padding-top: 1rem;
+    font-family: $ff-mono;
+    font-size: $fs-text-small;
+    color: $c-text-light;
+  }
+}
