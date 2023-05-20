@@ -1,0 +1,141 @@
+@use "./config.scss" as *;
+
+body {
+  background-color: $c-background;
+  color: $c-text-normal;
+}
+a,
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--green);
+  text-decoration-thickness: 2px;
+  color: $c-text-highlight;
+}
+hr {
+  margin: 0 0 25px 0;
+  border: none;
+  border-bottom: $border-normal;
+}
+/* NavBar */
+.navbar {
+  font-size: 16px;
+  box-shadow: 0px 1px 10px var(--shadow-color);
+  padding: 10px 20px;
+}
+nav.bg-primary {
+  /* !important required because bootstrap uses it too already >:( */
+  background-color: $c-denizen-yellow !important;
+}
+.navbar-dark .navbar-brand {
+  position: relative;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 1px 0px #222, 2px 2px 0px #222, 3px 3px 0px #222,
+    -1px 1px 0px #222, 0px 2px 0px #222, 1px 3px 0px #222, -1px -1px 0px #222,
+    -1px 1px 0px #222, 1px -1px 0px #222;
+}
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--very-black);
+  text-decoration: none;
+}
+.navbar-dark .navbar-nav .nav-item {
+  position: relative;
+}
+.navbar-dark .navbar-nav .nav-item:hover {
+  text-decoration: underline;
+}
+/* Content's header */
+.center_helper {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 2fr 3fr;
+}
+.center_helper br {
+  display: none;
+}
+.jumbotron {
+  background-color: transparent;
+  border-bottom: $border-normal;
+  border-radius: 0;
+  grid-column: span 2;
+  grid-row: span 1;
+  text-align: left;
+  padding: 15px 50% 60px $m-content;
+  font-size: 22px;
+  line-height: 27px;
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+.jumbotron h3 {
+  color: $c-text-titles;
+  font-size: 40px;
+  margin: 0;
+}
+.jumbotron br {
+  display: inline-block;
+}
+input#search_bar {
+  grid-column: span 1;
+  grid-row: span 1;
+  outline: none;
+  padding: 10px 0 10px $m-content;
+  font-size: 20px;
+  border: 0;
+  background-color: $c-background;
+  border-bottom: $border-normal;
+}
+h5 {
+  grid-column: span 1;
+  grid-row: span 1;
+  color: var(--very-black);
+  padding: 10px 30% 10px 15px;
+  font-size: 20px;
+  text-align: left;
+  border-bottom: $border-normal;
+  border-left: $border-normal;
+  line-height: 30px;
+  margin: 0;
+}
+
+body > center h4 {
+  font-size: 30px;
+  padding: 20px 0 15px $m-content;
+  width: 100%;
+  color: $c-text-titles;
+}
+.categories_container {
+  margin: 0 $m-content 5px $m-content;
+  font-size: 0px;
+}
+.categories_container > a {
+  font-size: 16px;
+}
+.categories_container a,
+h4 a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: var(--tag);
+  padding: 1px 6px;
+  margin: 6px 6px 0 0;
+  border-radius: $border-radius;
+}
+body > center > a:first-of-type {
+  margin-left: $m-content;
+}
+
+footer center {
+  padding-inline: $m-content;
+
+  // rule must take full width
+  > hr {
+    margin-inline: calc($m-content * -1);
+  }
+  // copyright mention
+  > p {
+    padding-top: 1rem;
+    font-family: $ff-mono;
+    font-size: $fs-text-small;
+    color: $c-text-light;
+  }
+}
