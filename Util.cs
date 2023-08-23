@@ -9,6 +9,8 @@ namespace DenizenMetaWebsite
     /// <summary>Helper utilities.</summary>
     public static class Util
     {
+        public static string HeaderLine = "Denizen Meta Documentation";
+
         /// <summary>A helper matcher for characters that need HTML escaping.</summary>
         public static AsciiMatcher NeedsEscapeMatcher = new("&<>");
 

@@ -41,6 +41,10 @@ namespace DenizenMetaWebsite
             {
                 MetaDocsLoader.SourcesToUse = Config.GetStringList("alt-sources").ToArray();
             }
+            if (Config.HasKey("header-line"))
+            {
+                Util.HeaderLine = Config.GetString("header-line");
+            }
             ReloadMeta();
         }
 
