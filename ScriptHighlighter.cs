@@ -1,10 +1,10 @@
-﻿using FreneticUtilities.FreneticExtensions;
-using FreneticUtilities.FreneticToolkit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FreneticUtilities.FreneticExtensions;
+using FreneticUtilities.FreneticToolkit;
 
 namespace DenizenMetaWebsite.Highlighters
 {
@@ -26,14 +26,40 @@ namespace DenizenMetaWebsite.Highlighters
             for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i];
-                string trimmed = line.Trim();
+                string trimmedStart = line.TrimStart();
+                string trimmed = trimmedStart.TrimEnd();
                 if (trimmed.EndsWithFast(':') && !trimmed.StartsWithFast('-'))
                 {
                     lastKey = trimmed[0..^1].ToLowerFast();
                 }
+                if (trimmed.StartsWithFast('-'))
+                {
+                    int spaces = line.Length - trimmedStart.Length;
+                    while (i + 1 < lines.Length)
+                    {
+                        string line2 = lines[i + 1];
+                        string trimmedStart2 = line2.TrimStart();
+                        int spaces2 = line2.Length - trimmedStart2.Length;
+                        string trimmed2 = trimmedStart2.TrimEnd();
+                        if (spaces2 > spaces && !trimmedStart2.StartsWith("- "))
+                        {
+                            line += "\n" + line2;
+                            lines[i] = null;
+                            i++;
+                            if (trimmed2.EndsWith(':'))
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
                 lines[i] = ColorLine(line, lastKey);
             }
-            return string.Join('\n', lines);
+            return lines.Where(i => i is not null).JoinString("\n");
         }
 
         public static AsciiMatcher CommentHeaderMatcher = new("|+=#_@/");
@@ -309,10 +335,6 @@ namespace DenizenMetaWebsite.Highlighters
                 else if (c == CHAR_TAG_END)
                 {
                     return true;
-                }
-                else if (c == ' ' && !quoted && canQuote && paramCount == 0)
-                {
-                    return false;
                 }
             }
             return false;
