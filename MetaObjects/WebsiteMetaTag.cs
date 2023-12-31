@@ -38,9 +38,9 @@ namespace DenizenMetaWebsite.MetaObjects
             AddHtmlEndParts();
         }
 
-        public static string[] SampleIntegers = new[] { "1", "2", "3", "4" };
+        public static string[] SampleIntegers = ["1", "2", "3", "4"];
 
-        public static string[] SampleDecimals = new[] { "1", "1.5", "2", "-1", "0" };
+        public static string[] SampleDecimals = ["1", "1.5", "2", "-1", "0"];
 
         public static AsciiMatcher TagParamTextCleaner = new("<>().,");
 

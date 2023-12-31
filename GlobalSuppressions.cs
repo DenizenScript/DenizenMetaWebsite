@@ -5,4 +5,6 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Usage", "CA2211:Non-constant fields should not be visible", Justification = "<Pending>")]
+[assembly: SuppressMessage("Usage", "CA2211:Non-constant fields should not be visible")]
+[assembly: SuppressMessage("Style", "IDE0060:Remove unused parameter")]
+[assembly: SuppressMessage("Performance", "CA1860:Avoid using 'Enumerable.Any()' extension method")]

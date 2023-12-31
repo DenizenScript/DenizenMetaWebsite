@@ -24,7 +24,7 @@ namespace DenizenMetaWebsite
             viewData["Theme_Footer"] = theme.Footer;
         }
 
-        public static Dictionary<string, ThemeHelper> Themes = new();
+        public static Dictionary<string, ThemeHelper> Themes = [];
 
         public static ThemeHelper Dark;
 

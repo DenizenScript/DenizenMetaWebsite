@@ -79,7 +79,7 @@ namespace DenizenMetaWebsite.MetaObjects
                     spans--;
                     part = part[..^1];
                 }
-                if (part.EndsWith(">"))
+                if (part.EndsWith('>'))
                 {
                     afterPart = "&gt;</span>" + afterPart;
                     spans--;

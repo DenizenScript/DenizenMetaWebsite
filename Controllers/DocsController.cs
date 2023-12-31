@@ -130,7 +130,7 @@ namespace DenizenMetaWebsite.Controllers
         public IActionResult Events([Bind] string id)
         {
             id = FixID(id);
-            List<WebsiteMetaEvent> addedEvent = new();
+            List<WebsiteMetaEvent> addedEvent = [];
             return HandleMeta(this, id, MetaSiteCore.Events, (orig) => orig.IsEmpty() ? GetExtraEvents(id) : null);
         }
 
@@ -160,7 +160,7 @@ namespace DenizenMetaWebsite.Controllers
             {
                 id = "Nothing";
             }
-            List<(int, WebsiteMetaObject)> results = new();
+            List<(int, WebsiteMetaObject)> results = [];
             foreach (WebsiteMetaObject obj in MetaSiteCore.AllObjects)
             {
                 int quality = obj.ObjectGeneric.SearchHelper.GetMatchQuality(id);
@@ -169,7 +169,7 @@ namespace DenizenMetaWebsite.Controllers
                     results.Add((quality, obj));
                 }
             }
-            results = results.OrderBy(pair => -pair.Item1).ThenBy(pair => pair.Item2.ObjectGeneric.Type.Name).ThenBy(pair => pair.Item2.ObjectGeneric.Name).ToList();
+            results = [.. results.OrderBy(pair => -pair.Item1).ThenBy(pair => pair.Item2.ObjectGeneric.Type.Name).ThenBy(pair => pair.Item2.ObjectGeneric.Name)];
             StringBuilder outText = new();
             outText.Append("<center>");
             if (results.Count > 0)

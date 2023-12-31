@@ -39,7 +39,7 @@ namespace DenizenMetaWebsite
             ReloadWebhookToken = Config.GetString("reload-webhook-token");
             if (Config.HasKey("alt-sources"))
             {
-                MetaDocsLoader.SourcesToUse = Config.GetStringList("alt-sources").ToArray();
+                MetaDocsLoader.SourcesToUse = [.. Config.GetStringList("alt-sources")];
             }
             if (Config.HasKey("header-line"))
             {
@@ -71,14 +71,14 @@ namespace DenizenMetaWebsite
                 ExtraData.ForceCache = true;
                 MetaDocs docs = MetaDocsLoader.DownloadAll();
                 Console.WriteLine("Meta loaded, HTMLizing...");
-                List<WebsiteMetaCommand> _commands = new();
-                List<WebsiteMetaTag> _tags = new();
-                List<WebsiteMetaObjectType> _objectTypes = new();
-                List<WebsiteMetaEvent> _events = new();
-                List<WebsiteMetaAction> _actions = new();
-                List<WebsiteMetaLanguage> _languages = new();
-                List<WebsiteMetaMechanism> _mechanisms = new();
-                List<WebsiteMetaObject> _allObjects = new();
+                List<WebsiteMetaCommand> _commands = [];
+                List<WebsiteMetaTag> _tags = [];
+                List<WebsiteMetaObjectType> _objectTypes = [];
+                List<WebsiteMetaEvent> _events = [];
+                List<WebsiteMetaAction> _actions = [];
+                List<WebsiteMetaLanguage> _languages = [];
+                List<WebsiteMetaMechanism> _mechanisms = [];
+                List<WebsiteMetaObject> _allObjects = [];
                 void procSet<T, T2>(ref List<T> webObjs, ICollection<T2> origObjs) where T: WebsiteMetaObject<T2>, new() where T2: MetaObject
                 {
                     foreach (T2 obj in origObjs)

@@ -50,7 +50,7 @@ namespace DenizenMetaWebsite.MetaObjects
             {
                 return $"- adjust {baseObjType.GeneratedExampleAdjust} {Object.MechName}";
             }
-            string[] paramSet = input switch { "elementtag(boolean)" => new[] { "true", "false" }, "elementtag(number)" => WebsiteMetaTag.SampleIntegers, "elementtag(decimal)" => WebsiteMetaTag.SampleDecimals, _ => null };
+            string[] paramSet = input switch { "elementtag(boolean)" => ["true", "false"], "elementtag(number)" => WebsiteMetaTag.SampleIntegers, "elementtag(decimal)" => WebsiteMetaTag.SampleDecimals, _ => null };
             if (paramSet is null)
             {
                 if (!Object.Meta.ObjectTypes.TryGetValue(input, out MetaObjectType inputObjType) && !Object.Meta.ObjectTypes.TryGetValue(input + "tag", out inputObjType))
