@@ -132,7 +132,7 @@ namespace DenizenMetaWebsite.MetaObjects
             HtmlContent += TableLine("default", "Related Tags", HtmlizeTags(Object.Tags, Object.Meta), false);
             foreach (string usage in Object.Usages)
             {
-                HtmlContent += TableLine("default", "Usage Example", ScriptHighlighter.Highlight("#" + usage), false);
+                HtmlContent += TableLine("default", "Usage Example", ScriptHighlighter.Highlight("# " + usage), false);
             }
             AddHtmlEndParts();
         }
