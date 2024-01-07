@@ -9,7 +9,7 @@
     <Compile Remove="SharpDenizenTools\**\*.*" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FreneticLLC.FreneticUtilities" Version="1.0.20" />
+    <PackageReference Include="FreneticLLC.FreneticUtilities" Version="1.0.24" />
     <ProjectReference Include="SharpDenizenTools\SharpDenizenTools\SharpDenizenTools.csproj" />
   </ItemGroup>
 </Project>
