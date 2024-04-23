@@ -24,7 +24,7 @@ namespace DenizenMetaWebsite.Controllers
             ThemeHelper.HandleTheme(controller.Request, controller.ViewData);
             List<T> toDisplay = search == null ? objects : objects.Where(o => o.ObjectGeneric.SearchHelper.GetMatchQuality(search) > 6).ToList();
             List<T> extra = extraSearchResults?.Invoke(toDisplay);
-            if (extra != null)
+            if (extra is not null)
             {
                 toDisplay.InsertRange(0, extra);
             }
@@ -33,7 +33,7 @@ namespace DenizenMetaWebsite.Controllers
                 Console.WriteLine($"Search for '{search}' found 0 results");
             }
             T exactMatch = toDisplay.FirstOrDefault(o => o.ObjectGeneric.CleanName == search);
-            if (exactMatch != null)
+            if (exactMatch is not null)
             {
                 toDisplay.Clear();
                 toDisplay.Add(exactMatch);
