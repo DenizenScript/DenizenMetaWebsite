@@ -38,7 +38,7 @@ namespace DenizenMetaWebsite.Controllers
                 toDisplay.Clear();
                 toDisplay.Add(exactMatch);
             }
-            List<string> categories = toDisplay.Select(o => o.GroupingString).Distinct().ToList();
+            List<string> categories = toDisplay.Select(o => o.GroupingString ?? "(ERROR MISSING GROUP)").Distinct().ToList();
             StringBuilder outText = new();
             outText.Append("<center>\n");
             if (categories.Count > 1)
