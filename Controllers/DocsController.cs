@@ -54,7 +54,7 @@ namespace DenizenMetaWebsite.Controllers
                 {
                     string linkable = HttpUtility.UrlEncode(category.ToLowerFast());
                     outText.Append($"<br><hr><br><h4>Category: <a id=\"{linkable}\" href=\"#{linkable}\" onclick=\"doFlashFor('{linkable}')\">{Util.EscapeForHTML(category)}</a></h4><br>\n");
-                    outText.Append(string.Join("\n<br>", toDisplay.Where(o => o.GroupingString ?? "(ERROR MISSING GROUP)" == category).Distinct().Select(o => o.HtmlContent)));
+                    outText.Append(string.Join("\n<br>", toDisplay.Where(o => (o.GroupingString ?? "(ERROR MISSING GROUP)") == category).Distinct().Select(o => o.HtmlContent)));
                 }
             }
             else
