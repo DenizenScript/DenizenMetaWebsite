@@ -45,7 +45,7 @@ namespace DenizenMetaWebsite.MetaObjects
             {
                 return null;
             }
-            string input = Object.Input.ToLowerFast();
+            string input = Object.Input?.ToLowerFast() ?? "(ERROR INVALID MISSING INPUT)";
             if (input == "none")
             {
                 return $"- adjust {baseObjType.GeneratedExampleAdjust} {Object.MechName}";
