@@ -7,7 +7,7 @@ Meta-documentation website for Denizen.
 
 Designed for and tested on Debian Linux.
 
-- Make sure you have `screen` and `dotnet-6-sdk` available
+- Make sure you have `screen` and `dotnet-8-sdk` available
 - Add a user for the service (via `adduser` generally, then `su` to that user)
 - Clone the git repo (`git clone https://github.com/DenizenScript/DenizenMetaWebsite`) and enter the folder
 - Make a folder labeled `config`, inside it make a text file labeled `config.fds`, and add any configuration keys from the sample config below. All keys are optional, a default config would be an empty file.
@@ -17,7 +17,7 @@ Designed for and tested on Debian Linux.
 
 ### Testing on Windows
 
-- Install [DotNET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
+- Install [DotNET 8](https://dotnet.microsoft.com/download/dotnet/8.0)
 - Make a folder labeled `config`, inside it make a text file labeled `config.fds`, and add any configuration keys from the sample config below. All keys are optional, a default config would be an empty file.
 - Open this folder in VS Code
 - Use the terminal at the bottom of VS Code, run `.\start.ps1`
@@ -49,7 +49,7 @@ You can do basically whatever you want, except you may not hold any developer li
 
 The MIT License (MIT)
 
-Copyright (c) 2021-2022 The Denizen Script Team
+Copyright (c) 2021-2026 The Denizen Script Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
