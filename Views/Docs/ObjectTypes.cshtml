@@ -1,7 +1,7 @@
 @model DocViewModel
 @{
     ViewData["Title"] = (Model.IsAll ? "" : "Search '" + Model.SearchText + "' | ") + "Object Types";
-    ViewData["Description"] = Model.IsAll ? "Object Type List" : "Tag search for '" + Model.SearchText + "'";
+    ViewData["Description"] = Model.IsAll ? "Object Type List" : "Object type search for '" + Model.SearchText + "'";
     ViewData["MetaColor"] = "#FFFFFF";
 }
 
@@ -12,7 +12,7 @@
         <br>Learn about how objects work in <a href="https://guide.denizenscript.com/">The Beginner's Guide</a>.
     </div>
     
-    <input type="text" id="search_bar" placeholder="Search Tags...">
+    <input type="text" id="search_bar" placeholder="Search Object Types...">
     <script>
         document.getElementById('search_bar').addEventListener('keydown', function(e) {
             if (!e)  {
